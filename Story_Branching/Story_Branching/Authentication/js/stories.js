@@ -199,7 +199,6 @@ async function quickSaveStatus(newStatus) {
     alert(`Story successfully saved as: ${newStatus.toUpperCase()}`);
     showNodes(currentStory);
 }
-
 // 2. Handle Node Submit
 async function handleNode(event) {
     if (event) event.preventDefault();
