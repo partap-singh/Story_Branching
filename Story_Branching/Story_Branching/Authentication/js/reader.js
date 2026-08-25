@@ -536,7 +536,6 @@ function enterStoryWorld(storyId) {
     window.location.href = `play.html?id=${storyId}`;
 }
 
-
 /* =====================================================
    STORY PLAYER (PLAY.HTML)
 ===================================================== */
