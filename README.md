@@ -162,11 +162,10 @@ Launch the local json-server database:
 npm run server
 The REST API will run at http://localhost:3000.
 
-5. Launch the Application
-Open Landing.html in your favorite browser or use Live Server in VS Code / Antigravity IDE:
+
 
 http://localhost:5500/Story_Branching/Authentication/Landing.html
-6. Default Credentials
+5.. Default Credentials
 Role	Email	Password
 Admin	admin@gmail.com	admin123
 Reader	testreader@example.com	password123
