@@ -1,7 +1,6 @@
 /**
  * Dynamic Story Engine - Registration Controller
  */
-
 function togglePassword(inputId, eyeSymbolId) {
     let passwordInput = document.getElementById(inputId);
     let eyeSymbol = document.getElementById(eyeSymbolId);
