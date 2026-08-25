@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Library &amp; Community Universes | Dynamic Story Engine</title>
+    <link rel="stylesheet" href="../../css/reader.css?v=3.0">
+    <style>
+        /* Reader XP & Progression Bar */
+        .reader-stats-banner {
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 24px;
+            padding: 20px 28px;
+            box-shadow: 6px 6px 0px #000;
+            margin-bottom: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .xp-level-badge {
+            background: var(--color-voltage-violet, #5c4ade);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 100px;
+            border: 2px solid #000;
+            font-weight: 800;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .xp-progress-track {
+            width: 220px;
+            height: 12px;
+            background: #eee;
+            border: 2px solid #000;
+            border-radius: 100px;
+            overflow: hidden;
+            position: relative;
+        }
+        .xp-progress-fill {
+            height: 100%;
+            background: var(--color-yellow, #ffd731);
+            border-right: 2px solid #000;
+            transition: width 0.4s ease;
+        }
+        .badges-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .badge-pill {
+            background: #f8f8f8;
+            border: 2px solid #000;
+            border-radius: 100px;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 2px 2px 0px #000;
+        }
+        .badge-pill.unlocked {
+            background: #dceeff;
+            color: #000;
+        }
+
+        /* Tabs bar */
+        .library-tabs-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .lib-tab-btn {
+            background: #fff;
+            color: #000;
+            border: 2px solid #000;
+            border-radius: 100px;
+            padding: 8px 20px;
+            font-family: var(--font-ui);
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px #000;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .lib-tab-btn.active {
+            background: var(--color-sunburst, #ffd731);
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 0px #000;
+        }
+
+        /* AI Recommendation Section */
+        .ai-recommend-section {
+            margin-bottom: 36px;
+        }
+        .ai-header-pill {
+            background: linear-gradient(135deg, #ffd731 0%, #ff6b6b 100%);
+            border: 2px solid #000;
+            border-radius: 100px;
+            padding: 4px 14px;
+            font-weight: 800;
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 2px 2px 0px #000;
+            margin-bottom: 8px;
+        }
+
+        /* Reviews in Modal */
+        .reviews-section-box {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 3px solid #000;
+        }
+        .review-card-item {
+            background: #fafafa;
+            border: 2px solid #000;
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            box-shadow: 2px 2px 0px #000;
+        }
+        .star-rating-select {
+            display: flex;
+            gap: 6px;
+            font-size: 24px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .star-rating-select span {
+            color: #ccc;
+            transition: color 0.15s ease;
+        }
+        .star-rating-select span.selected,
+        .star-rating-select span:hover,
+        .star-rating-select span:hover ~ span {
+            color: #f59e0b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Rolling Announcement Ticker -->
+    <div class="marquee-strip">
+        <div class="marquee-content">
+            ⚡ AI-POWERED INTERACTIVE STORY ENGINE &bull; CHOOSE YOUR DESTINY &bull; COMMUNITY REVIEWS &amp; RATINGS &bull; USER STORY STUDIO &bull;&nbsp;
+            ⚡ AI-POWERED INTERACTIVE STORY ENGINE &bull; CHOOSE YOUR DESTINY &bull; COMMUNITY REVIEWS &amp; RATINGS &bull; USER STORY STUDIO &bull;&nbsp;
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="logo">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: sub; margin-right: 6px;">
+                <circle cx="4" cy="12" r="3" fill="currentColor"/>
+                <path d="M7 12H13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M7 12C10 12 11 5 14 5H17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M7 12C10 12 11 19 14 19H17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="18" cy="5" r="2.5" fill="currentColor"/>
+                <circle cx="15" cy="12" r="2.5" fill="currentColor"/>
+                <circle cx="18" cy="19" r="2.5" fill="currentColor"/>
+            </svg>
+            <span>STORY ENGINE</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="../../Landing.html" class="nav-pill">Home</a></li>
+            <li><a href="../admin/add_stories.html" class="nav-pill" style="background: var(--color-sunburst, #ffd731); font-weight: 800;">+ Create Story</a></li>
+            <li id="adminNavPill" style="display: none;"><a href="../admin/admin.html" class="nav-pill">Admin Dashboard</a></li>
+            <li id="navAuthContainer">
+                <button onclick="handleLogout()" class="nav-pill logout-btn">Sign Out</button>
+            </li>
+        </ul>
+    </header>
+
+    <main class="reader-container">
+
+        <!-- Reader Level & Progression Banner -->
+        <section id="readerStatsBanner" class="reader-stats-banner">
+            <div>
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap;">
+                    <span id="playerLevelBadge" class="xp-level-badge">⭐ LEVEL 1: APPRENTICE</span>
+                    <span id="playerXpText" style="font-weight: 800; font-size: 14px;">100 XP Total</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px; margin-top: 4px;">
+                    <div class="xp-progress-track">
+                        <div id="xpProgressFill" class="xp-progress-fill" style="width: 25%;"></div>
+                    </div>
+                    <span id="xpToNextLevel" style="font-size: 12px; font-weight: 700; color: #555;">50 XP to Level 2</span>
+                </div>
+            </div>
+
+            <!-- Achievement Badges -->
+            <div>
+                <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; margin-bottom: 6px; color: #444;">Exploration Badges:</div>
+                <div class="badges-row">
+                    <span class="badge-pill unlocked">🧭 Pathfinder</span>
+                    <span class="badge-pill unlocked">⏪ Time Warper</span>
+                    <span class="badge-pill unlocked">🌳 Branch Master</span>
+                    <span class="badge-pill unlocked">✍️ Creator</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Library Header with Search & Filter -->
+        <div class="library-header" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; margin-bottom: 20px; border-bottom: 3px solid #000; padding-bottom: 20px;">
+            <div>
+                <h1 style="font-family: var(--font-display); font-size: 36px; margin-bottom: 6px;">BRANCHING ADVENTURES</h1>
+                <p style="font-weight: 700; font-size: 15px; color: #333;">
+                    Traverse community universes or build and publish your own interactive branching stories.
+                </p>
+            </div>
+
+            <!-- Search & Filter Controls -->
+            <div class="library-controls" style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+                <div style="position: relative;">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search by title, author, or theme..." 
+                        onkeyup="filterStories()"
+                        style="padding: 12px 20px 12px 42px; border: 2px solid #000; border-radius: 100px; font-family: var(--font-ui); font-weight: 700; font-size: 14px; box-shadow: 3px 3px 0px #000; outline: none; width: 280px; background: #fff;"
+                    >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); opacity: 0.6;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+
+                <select 
+                    id="genreFilter" 
+                    onchange="filterStories()"
+                    style="padding: 12px 20px; border: 2px solid #000; border-radius: 100px; font-family: var(--font-ui); font-weight: 800; font-size: 14px; box-shadow: 3px 3px 0px #000; outline: none; background: #fff; cursor: pointer;"
+                >
+                    <option value="all">All Genres</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="cyberpunk">Cyberpunk</option>
+                    <option value="sci-fi">Sci-Fi</option>
+                    <option value="mystery">Mystery</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="horror">Horror</option>
+                </select>
+
+                <select 
+                    id="sortOrder" 
+                    onchange="filterStories()"
+                    style="padding: 12px 20px; border: 2px solid #000; border-radius: 100px; font-family: var(--font-ui); font-weight: 800; font-size: 14px; box-shadow: 3px 3px 0px #000; outline: none; background: #fff; cursor: pointer;"
+                >
+                    <option value="ai">✨ AI Recommended</option>
+                    <option value="rating">⭐ Top Rated</option>
+                    <option value="scenes">📊 Most Scenes / Nodes</option>
+                    <option value="title">🔤 Title (A - Z)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Library Filter Tabs (All Stories vs My Created Stories) -->
+        <div class="library-tabs-bar">
+            <button type="button" class="lib-tab-btn active" id="tabAllStories" onclick="switchLibraryTab('all')">
+                🌍 Explore Community Library (<span id="allStoriesCount">0</span>)
+            </button>
+            <button type="button" class="lib-tab-btn" id="tabMyStories" onclick="switchLibraryTab('my')">
+                ✍️ My Created Stories (<span id="myStoriesCount">0</span>)
+            </button>
+            <a href="../admin/add_stories.html" class="lib-tab-btn" style="margin-left: auto; background: var(--color-sunburst); border-color: #000;">
+                + Create New Story
+            </a>
+        </div>
+
+        <!-- AI Top Recommendation Showcase Strip -->
+        <section id="aiRecommendationSection" class="ai-recommend-section" style="display: none;">
+            <div class="ai-header-pill">🤖 AI COSINE-SIMILARITY RECOMMENDATION</div>
+            <div id="aiRecommendationContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+                <!-- AI Top Match Injected Here -->
+            </div>
+        </section>
+
+        <!-- Stories Grid Container -->
+        <section id="storiesContainer" class="stories-container">
+            <!-- Dynamic story cards injected by JS -->
+        </section>
+
+    </main>
+
+    <!-- Story Detail Showcase Modal (With Reviews & Ratings) -->
+    <div id="storyDetailModal" class="story-detail-modal-overlay hidden" onclick="closeStoryDetails(event)">
+        <div class="story-detail-card" onclick="event.stopPropagation()" style="max-height: 90vh; overflow-y: auto;">
+            <!-- JS dynamically injects story details and reviews -->
+        </div>
+    </div>
+
+    <!-- Core Subsystems Scripts -->
+    <script src="../../js/data_service.js?v=3.0"></script>
+    <script src="../../js/ai_engine.js?v=3.0"></script>
+    <script src="../../js/graph_studio.js?v=3.0"></script>
+    <script src="../../js/audio_engine.js?v=3.0"></script>
+    <script src="../../js/reader.js?v=3.0"></script>
+
+</body>
+
+</html>

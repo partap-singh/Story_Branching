@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | Dynamic Story Engine</title>
+    <link rel="stylesheet" href="../../css/login.css">
+    <style>
+        .quick-demo-section {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 2px dashed #000;
+            text-align: center;
+        }
+        .quick-demo-title {
+            font-family: var(--font-display);
+            font-size: 13px;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+        .quick-demo-btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .demo-btn {
+            background: #fff;
+            color: #000;
+            border: 2px solid #000;
+            border-radius: 100px;
+            padding: 10px 14px;
+            font-family: var(--font-ui);
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px #000;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 0px #000;
+            background: var(--color-sunburst, #ffd731);
+        }
+        .demo-btn.admin-preset:hover {
+            background: #ffd731;
+        }
+        .demo-btn.reader-preset:hover {
+            background: #55db9c;
+        }
+    </style>
+</head>
+<body>
+    <script src="../../js/data_service.js"></script>
+    <script>
+        let loggedIn = JSON.parse(localStorage.getItem("user"));
+        if (loggedIn) {
+            if (loggedIn.role === "Admin") {
+                window.location.href = "../admin/admin.html";
+            } else {
+                window.location.href = "../reader/stories.html";
+            }
+        }
+    </script>
+
+    <div class="login-wrapper">
+        <form onsubmit="handleLogin(event)" id="loginForm">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h1 style="font-family: var(--font-display); font-size: 26px; text-transform: uppercase; margin-bottom: 4px;">Story Engine</h1>
+                <p style="font-weight: 700; font-size: 13px; color: #444;">Sign in to traverse branching narrative universes</p>
+            </div>
+
+            <label for="email">EMAIL ADDRESS</label>
+            <input type="email" id="email" placeholder="e.g. admin@gmail.com" required autocomplete="email">
+
+            <label for="password">PASSWORD</label>
+            <div class="password-container">
+                <input type="password" placeholder="Enter your password" id="password" required autocomplete="current-password">
+                <button type="button" class="eye-toggle" onclick="toggleEye()" aria-label="Toggle password visibility">
+                    <span id="eyeSymbol">👁️</span>
+                </button>
+            </div>
+
+            <input type="submit" value="SIGN IN &rarr;" id="submitBtn">
+
+            <a href="signup.html" class="register-redirect-btn">
+                ✨ New Explorer? Create Account
+            </a>
+
+            <!-- Quick Demo 1-Click Evaluation Buttons -->
+            <div class="quick-demo-section">
+                <div class="quick-demo-title">⚡ 1-Click Presentation Demo Login</div>
+                <div class="quick-demo-btn-group">
+                    <button type="button" class="demo-btn admin-preset" onclick="quickLogin('admin')">
+                        👑 Quick Demo as Admin (Full Access)
+                    </button>
+                    <button type="button" class="demo-btn reader-preset" onclick="quickLogin('reader')">
+                        🚀 Quick Demo as Story Explorer (Reader)
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="../../js/login.js"></script>
+</body>
+</html>

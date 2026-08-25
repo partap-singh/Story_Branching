@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard &amp; Graph Studio | Dynamic Story Engine</title>
+
+    <link rel="stylesheet" href="../../css/admin.css">
+    <script>
+        let user = JSON.parse(localStorage.getItem("user"));
+        if (!user) {
+            window.location.href = "../auth/login.html";
+        } else if (user.role !== "Admin") {
+            window.location.href = "../reader/stories.html";
+        }
+    </script>
+    <style>
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .analytics-card {
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 20px;
+            padding: 18px 22px;
+            box-shadow: 4px 4px 0px #000;
+        }
+        .analytics-num {
+            font-family: var(--font-display);
+            font-size: 28px;
+            margin-bottom: 2px;
+        }
+        .analytics-label {
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Marquee Banner Strip -->
+    <div class="marquee-strip">
+        <div class="marquee-content">
+            ⚡ ADMIN DASHBOARD &bull; DIRECTED GRAPH (DAG) VALIDATOR &bull; AI STORY CO-PILOT &bull; TOPOLOGICAL ANALYZER &bull;&nbsp;
+            ⚡ ADMIN DASHBOARD &bull; DIRECTED GRAPH (DAG) VALIDATOR &bull; AI STORY CO-PILOT &bull; TOPOLOGICAL ANALYZER &bull;&nbsp;
+        </div>
+    </div>
+
+    <!-- Admin Navigation Header -->
+    <header class="navbar">
+        <div class="logo">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: sub; margin-right: 6px;">
+                <circle cx="4" cy="12" r="3" fill="currentColor"/>
+                <path d="M7 12H13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M7 12C10 12 11 5 14 5H17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M7 12C10 12 11 19 14 19H17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="18" cy="5" r="2.5" fill="currentColor"/>
+                <circle cx="15" cy="12" r="2.5" fill="currentColor"/>
+                <circle cx="18" cy="19" r="2.5" fill="currentColor"/>
+            </svg>
+            <span>STORY ENGINE ADMIN</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../../Landing.html" class="nav-pill">Home</a></li>
+            <li><a href="admin.html" class="nav-pill active">Dashboard</a></li>
+            <li><a href="../reader/stories.html" class="nav-pill">Reader View</a></li>
+            <li id="navAuthContainer">
+                <button onclick="handleLogout()" class="nav-pill logout-btn">Sign Out</button>
+            </li>
+        </ul>
+    </header>
+
+    <!-- Admin Main Container -->
+    <div class="admin-container">
+        <main>
+            <!-- Dashboard Title & Actions Bar -->
+            <div class="dashboard-title">
+                <div>
+                    <h2>STORY MANAGEMENT DASHBOARD</h2>
+                    <p style="font-weight: 700; color: var(--color-carbon);">
+                        Construct branching storylines, validate directed graph integrity, and run AI narrative simulations.
+                    </p>
+                </div>
+                <div class="header-actions">
+                    <button id="seedSampleBtn" class="secondary-btn" onclick="restoreSampleStory()">
+                        🔄 Seed 4 Core Presets
+                    </button>
+                    <button class="secondary-btn" onclick="exportDatabaseJson()">
+                        💾 Export JSON
+                    </button>
+                    <button id="createStoryBtn" class="primary-btn" onclick="redirectStory()">
+                        + Create New Story
+                    </button>
+                </div>
+            </div>
+
+            <!-- Graph & Story Analytics Cards -->
+            <section class="analytics-grid" id="analyticsGrid">
+                <div class="analytics-card" style="background: var(--color-yellow);">
+                    <div class="analytics-num" id="statTotalStories">0</div>
+                    <div class="analytics-label">Total Stories</div>
+                </div>
+                <div class="analytics-card" style="background: var(--color-sky-wash, #dceeff);">
+                    <div class="analytics-num" id="statTotalNodes">0</div>
+                    <div class="analytics-label">Total Scene Vertices</div>
+                </div>
+                <div class="analytics-card" style="background: var(--color-mint-pop, #55db9c);">
+                    <div class="analytics-num" id="statAvgBranches">0.0</div>
+                    <div class="analytics-label">Avg Branching Factor</div>
+                </div>
+                <div class="analytics-card" style="background: var(--color-lavender, #e9ccff);">
+                    <div class="analytics-num" id="statPublishedStories">0</div>
+                    <div class="analytics-label">Published In Library</div>
+                </div>
+            </section>
+
+            <!-- Stories List -->
+            <section id="storiesContainer" class="stories-container">
+                <!-- Injected dynamically -->
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Graph Diagnostics Modal -->
+    <div id="diagnosticsModal" class="modal hidden">
+        <div class="modal-content" style="max-width: 640px;">
+            <div class="modal-header">
+                <h3 id="diagnosticsTitle" style="font-size: 20px;">GRAPH TOPOLOGY AUDIT</h3>
+                <button type="button" onclick="closeDiagnosticsModal()" class="close-btn">&times;</button>
+            </div>
+            <div id="diagnosticsBody" style="padding: 20px 0;">
+                <!-- Audit report injected here -->
+            </div>
+            <div class="form-actions">
+                <button type="button" class="primary-btn" onclick="closeDiagnosticsModal()">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Dynamic Story Engine &bull; AI/ML &amp; Discrete Graph Architecture Portal
+    </footer>
+
+    <!-- Core Scripts -->
+    <script src="../../js/data_service.js"></script>
+    <script src="../../js/ai_engine.js"></script>
+    <script src="../../js/graph_studio.js"></script>
+    <script src="../../js/admin.js"></script>
+</body>
+
+</html>

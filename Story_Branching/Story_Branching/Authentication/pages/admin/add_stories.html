@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story &amp; Graph Studio | Dynamic Story Engine</title>
+    <!-- Linked CSS files -->
+    <link rel="stylesheet" href="../../css/stories.css?v=3">
+    <style>
+        .view-switcher-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            background: #fff;
+            color: #000;
+            border: 2px solid #000;
+            border-radius: 100px;
+            padding: 8px 18px;
+            font-family: var(--font-ui);
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px #000;
+            transition: all 0.2s ease;
+        }
+        .tab-btn.active {
+            background: var(--color-sunburst, #ffd731);
+            transform: translateY(-2px);
+            box-shadow: 3px 3px 0px #000;
+        }
+        .ai-copilot-pill {
+            background: linear-gradient(135deg, #5c4ade 0%, #4da2ff 100%);
+            color: #fff;
+            border: 2px solid #000;
+            border-radius: 100px;
+            padding: 8px 18px;
+            font-family: var(--font-ui);
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px #000;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ai-copilot-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 0px #000;
+        }
+        .graph-canvas-box {
+            background: #f8f9fa;
+            border: 3px solid #000;
+            border-radius: 20px;
+            padding: 16px;
+            box-shadow: 4px 4px 0px #000;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Marquee Banner Strip -->
+    <div class="marquee-strip">
+        <div class="marquee-content">
+            ✏️ STORY &amp; GRAPH STUDIO &bull; TOPOLOGICAL DAG BUILDER &bull; AI SCENE CO-PILOT &bull; MULTI-ENDING SYNTHESIZER &bull;&nbsp;
+            ✏️ STORY &amp; GRAPH STUDIO &bull; TOPOLOGICAL DAG BUILDER &bull; AI SCENE CO-PILOT &bull; MULTI-ENDING SYNTHESIZER &bull;&nbsp;
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="logo">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: sub; margin-right: 6px;">
+                <circle cx="4" cy="12" r="3" fill="currentColor"/>
+                <path d="M7 12H13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M7 12C10 12 11 5 14 5H17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M7 12C10 12 11 19 14 19H17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="18" cy="5" r="2.5" fill="currentColor"/>
+                <circle cx="15" cy="12" r="2.5" fill="currentColor"/>
+                <circle cx="18" cy="19" r="2.5" fill="currentColor"/>
+            </svg>
+            <span>STORY ENGINE STUDIO</span>
+        <ul class="nav-links">
+            <li><a href="../reader/stories.html" class="nav-pill">&larr; Story Library</a></li>
+            <li id="adminDashLink" style="display: none;"><a href="admin.html" class="nav-pill">Admin Dashboard</a></li>
+        </ul>
+    </header>
+
+    <script>
+        let u = JSON.parse(localStorage.getItem("user"));
+        if (u && u.role === "Admin") {
+            let adminLink = document.getElementById("adminDashLink");
+            if (adminLink) adminLink.style.display = "inline-block";
+        }
+    </script>
+
+    <div class="admin-container">
+        <main>
+            <!-- Title & Top Actions Bar -->
+            <div class="editor-header">
+                <div>
+                    <h2 id="editorPageHeading">CREATE &amp; EDIT STORY</h2>
+                    <p style="font-weight: 700; color: var(--color-carbon);">
+                        Define narrative vertices (scenes) and directed choices (edges) with topological graph validation.
+                    </p>
+                </div>
+                <div class="header-actions">
+                    <button type="button" class="ai-copilot-pill" onclick="openAITreeModal()">
+                        🤖 AI Story Synthesizer
+                    </button>
+                    <button type="button" class="secondary-btn" onclick="validateCurrentStoryGraph()">
+                        🩺 Audit Graph
+                    </button>
+                    <button type="button" class="secondary-btn" onclick="quickSaveStatus('draft')">
+                        Save Draft
+                    </button>
+                    <button type="button" class="primary-btn" onclick="quickSaveStatus('published')">
+                        Publish Story
+                    </button>
+                </div>
+            </div>
+
+            <!-- 1. Metadata Form Section -->
+            <section class="editor-card">
+                <h3 style="margin-bottom: 20px; font-size: 24px;">STORY METADATA</h3>
+                <form onsubmit="handleStory(event)" id="storyForm">
+                    <input type="hidden" id="storyIdInput" value="">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+                        <div class="form-group">
+                            <label for="story">STORY TITLE *</label>
+                            <input type="text" placeholder="e.g. The Quantum Paradox" id="story" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="genre">GENRE *</label>
+                            <select id="genre" required onchange="onGenreSelectChange(this.value)">
+                                <option value="">Select Genre</option>
+                                <option value="adventure">Adventure</option>
+                                <option value="cyberpunk">Cyberpunk</option>
+                                <option value="sci-fi">Sci-Fi</option>
+                                <option value="fantasy">Fantasy</option>
+                                <option value="mystery">Mystery</option>
+                                <option value="horror">Horror</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="status">PUBLICATION STATUS</label>
+                            <select id="status">
+                                <option value="draft">Draft (Private in Studio)</option>
+                                <option value="published">Published (Available in Reader Library)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="storyDescr">STORY DESCRIPTION *</label>
+                        <textarea placeholder="Brief synopsis of the interactive adventure..." id="storyDescr" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">COVER IMAGE URL * <span style="font-size: 11px; color: #555;">(Required - Pick a preset or paste link)</span></label>
+                        <input type="url" placeholder="https://images.unsplash.com/..." id="image" required oninput="updateCoverPreview()">
+                        
+                        <!-- Quick Image Presets -->
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px;">
+                            <span style="font-weight: 800; font-size: 12px; color: #333;">✨ Quick Presets:</span>
+                            <button type="button" class="nav-pill" style="font-size: 11px; padding: 4px 12px; background: #ffd731;" onclick="selectPresetCover('adventure')">🏰 Adventure</button>
+                            <button type="button" class="nav-pill" style="font-size: 11px; padding: 4px 12px; background: #c084fc;" onclick="selectPresetCover('cyberpunk')">🌃 Cyberpunk</button>
+                            <button type="button" class="nav-pill" style="font-size: 11px; padding: 4px 12px; background: #38bdf8;" onclick="selectPresetCover('sci-fi')">🚀 Sci-Fi</button>
+                            <button type="button" class="nav-pill" style="font-size: 11px; padding: 4px 12px; background: #fb923c;" onclick="selectPresetCover('mystery')">🔍 Mystery</button>
+                            <button type="button" class="nav-pill" style="font-size: 11px; padding: 4px 12px; background: #a78bfa;" onclick="selectPresetCover('fantasy')">🧙 Fantasy</button>
+                            <button type="button" class="nav-pill" style="font-size: 11px; padding: 4px 12px; background: #f87171;" onclick="selectPresetCover('horror')">🎃 Horror</button>
+                        </div>
+
+                        <!-- Live Cover Image Preview Box -->
+                        <div id="coverPreviewContainer" style="margin-top: 14px; display: none;">
+                            <div style="font-weight: 800; font-size: 12px; margin-bottom: 6px;">🖼️ COVER PREVIEW:</div>
+                            <img id="coverPreviewImg" src="" alt="Cover Preview" style="width: 100%; max-width: 380px; height: 180px; object-fit: cover; border: 3px solid #000; border-radius: 16px; box-shadow: 3px 3px 0 #000;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80';">
+                        </div>
+                    </div>
+
+                    <div class="form-actions" style="display: flex; gap: 12px; align-items: center;">
+                        <button type="submit" id="saveMetaBtn" class="primary-btn">Save Story Metadata</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- 2. Dual-View Scene & Graph Studio Section -->
+            <section class="nodes-section">
+                <div class="nodes-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
+                    <div>
+                        <h2 style="font-size: 28px; margin-bottom: 4px;">SCENE GRAPH &amp; DIRECTED EDGES</h2>
+                        <p style="font-weight: 700; color: #475569; font-size: 14px;">
+                            Each vertex represents a story scene; directed edges connect reader choices to next scenes.
+                        </p>
+                    </div>
+                    <div>
+                        <button type="button" id="addNodeBtn" onclick="openNodeModal(false)" class="primary-btn" style="padding: 12px 24px; font-size: 14px;">
+                            + Add Scene Node
+                        </button>
+                    </div>
+                </div>
+
+                <!-- View Switcher Tabs (Cards vs Interactive Canvas) -->
+                <div class="view-switcher-bar" style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <button type="button" class="tab-btn active" id="tabCardsView" onclick="switchView('cards')">
+                        📋 Scene Cards View
+                    </button>
+                    <button type="button" class="tab-btn" id="tabCanvasView" onclick="switchView('canvas')">
+                        🌐 Interactive Visual Graph Canvas
+                    </button>
+                </div>
+
+                <!-- Scene Cards View Container -->
+                <div id="cardsViewContainer">
+                    <div id="nodeHidden" class="nodes-container">
+                        <!-- Dynamic Scene Node Cards Render Here -->
+                    </div>
+                </div>
+
+                <!-- Interactive Visual Canvas View Container -->
+                <div id="canvasViewSection" class="graph-canvas-box" style="display: none; background: #fff; border: 3px solid #0f172a; border-radius: 24px; padding: 20px; box-shadow: 5px 5px 0 #0f172a;">
+                    <div id="interactiveCanvasContainer"></div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- 3. Add/Edit Node Modal -->
+    <div id="nodeModal" class="modal hidden">
+        <div class="modal-content" style="max-width: 600px; padding: 32px; border-radius: 28px;">
+            <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2.5px solid #0f172a; padding-bottom: 12px;">
+                <h3 id="nodeModalHeading" style="font-size: 22px; font-family: var(--font-display);">ADD SCENE NODE</h3>
+                <button type="button" id="closeNodeModal" onclick="closeNodeModal()" class="close-btn" style="font-size: 26px; font-weight: 900; background: none; border: none; cursor: pointer;">&times;</button>
+            </div>
+            <form id="nodeForm" onsubmit="handleNode(event)">
+                <input type="hidden" id="editingNodeId" value="">
+
+                <div class="form-group">
+                    <label for="nodeTitle">SCENE TITLE *</label>
+                    <input type="text" id="nodeTitle" placeholder="e.g. The Whispering Crossroad" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nodeText">SCENE TEXT / NARRATIVE *</label>
+                    <textarea id="nodeText" rows="4" placeholder="Describe the scene narrative, environment, and dilemma..." required></textarea>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+                    <div class="form-group">
+                        <label for="nodeLocation">LOCATION NAME</label>
+                        <input type="text" id="nodeLocation" placeholder="e.g. Oakhaven Border">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nodeCharacters">CHARACTERS PRESENT (COMMA-SEPARATED)</label>
+                        <input type="text" id="nodeCharacters" placeholder="e.g. Traveler, Elder Vael">
+                    </div>
+                </div>
+
+                <!-- Clean Ending Toggle Card -->
+                <div class="form-group" style="margin-top: 8px;">
+                    <label class="checkbox-toggle-card" for="isEnding">
+                        <input type="checkbox" id="isEnding" onchange="toggleEndingType(this)">
+                        <div>
+                            <strong>🏁 THIS SCENE IS A STORY ENDING (TERMINAL NODE)</strong>
+                            <div style="font-size: 12px; font-weight: 600; color: #475569; margin-top: 2px;">
+                                Terminal nodes conclude the story and calculate final path statistics.
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Ending Classification Group (Shown when checked) -->
+                <div id="endingTypeGroup" class="form-group" style="display: none; background: #f0fdf4; border: 2px solid #10b981; border-radius: 16px; padding: 16px; margin-top: 12px;">
+                    <label for="endingType" style="color: #065f46; font-weight: 800; font-size: 12px; margin-bottom: 6px;">ENDING CLASSIFICATION *</label>
+                    <select id="endingType" style="background: #fff;">
+                        <option value="good">🏆 Good / Victorious Ending</option>
+                        <option value="tragic">🥀 Tragic / Sacrificial Ending</option>
+                        <option value="bad">💀 Fatal / Defeat Ending</option>
+                        <option value="neutral">⚖️ Neutral / Mystery Ending</option>
+                    </select>
+                </div>
+
+                <div class="form-actions" style="margin-top: 24px; display: flex; justify-content: flex-end; gap: 12px;">
+                    <button type="button" id="cancelNodeBtn" onclick="closeNodeModal()" class="secondary-btn">Cancel</button>
+                    <button type="submit" class="primary-btn">Save Scene Node</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 4. Add/Edit Choice Modal -->
+    <div id="choiceModal" class="modal hidden">
+        <div class="modal-content" style="max-width: 580px; padding: 32px; border-radius: 28px;">
+            <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2.5px solid #0f172a; padding-bottom: 12px;">
+                <h3 id="choiceModalHeading" style="font-size: 20px; font-family: var(--font-display);">ADD DIRECTED CHOICE EDGE</h3>
+                <button type="button" class="close-btn" onclick="closeChoiceModal()" style="font-size: 26px; font-weight: 900; background: none; border: none; cursor: pointer;">&times;</button>
+            </div>
+
+            <form id="choiceForm" onsubmit="handleChoice(event)">
+                <input type="hidden" id="choiceFromNodeId" value="">
+                <input type="hidden" id="editingChoiceId" value="">
+
+                <div class="form-group">
+                    <label for="choiceText">CHOICE TEXT (ACTION PROMPT) *</label>
+                    <input type="text" id="choiceText" placeholder="e.g. Venture deep into the Whispering Woods" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="choiceTargetNode">TARGET DESTINATION SCENE *</label>
+                    <select id="choiceTargetNode" required>
+                        <option value="">-- Select Destination Scene --</option>
+                    </select>
+                </div>
+
+                <div class="form-actions" style="margin-top: 24px; display: flex; justify-content: flex-end; gap: 12px;">
+                    <button type="button" class="secondary-btn" onclick="closeChoiceModal()">Cancel</button>
+                    <button type="submit" class="primary-btn">Save Choice Edge</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer style="margin-top: 60px; padding: 24px; text-align: center; font-weight: 800; font-size: 13px; border-top: 2.5px solid #0f172a; background: #fff;">
+        Dynamic Story Engine &bull; Pure Vanilla JS &amp; LocalStorage Architecture
+    </footer>
+
+    <!-- Core Scripts -->
+    <script src="../../js/data_service.js"></script>
+    <script src="../../js/ai_engine.js"></script>
+    <script src="../../js/graph_studio.js"></script>
+    <script src="../../js/stories.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1448 @@
+{
+  "Users": [
+    {
+      "id": "1",
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "password": "admin123",
+      "role": "Admin"
+    },
+    {
+      "name": "Aniket Sharma",
+      "email": "aniket3113.beai24@chitkara.edu.in",
+      "password": "1234",
+      "role": "Reader",
+      "id": "TL21Nr0mVqU"
+    },
+    {
+      "name": "Aaryaman",
+      "email": "aps@gmail.com",
+      "password": "aps123",
+      "role": "Reader",
+      "id": "hOmIYopqVQY"
+    },
+    {
+      "name": "Aniket Sharma",
+      "email": "aniketsharma3113@gmail.com",
+      "password": "1234",
+      "role": "Reader",
+      "id": "gWnLBBbfzeg"
+    },
+    {
+      "name": "Aniket Sharma",
+      "email": "aniket@gmail.com",
+      "password": "1234",
+      "role": "Reader",
+      "id": "sVdpmWyCP3w"
+    },
+    {
+      "name": "Admin User",
+      "email": "admin@test.com",
+      "password": "admin123",
+      "role": "Reader",
+      "id": "oUJUsmxSUJU"
+    },
+    {
+      "name": "Test Reader",
+      "email": "testreader@example.com",
+      "password": "password123",
+      "role": "Reader",
+      "id": "rvP97WMs_8E"
+    },
+    {
+      "name": "Aniket sharma",
+      "email": "aniketsharma@gmail.com",
+      "password": "1234",
+      "role": "Reader",
+      "id": "7E0vmNxETng"
+    },
+    {
+      "name": "aaryaman",
+      "email": "aaryaman@gmail.com",
+      "password": "6969",
+      "role": "Reader",
+      "id": "cOk-jAbhMgQ"
+    },
+    {
+      "name": "alloo",
+      "email": "alloo@gmail.com",
+      "password": "12345",
+      "role": "Reader",
+      "id": "KFTY2yVChRw"
+    },
+    {
+      "name": "Partap Singh",
+      "email": "partapgujjarwal@gmail.com",
+      "password": "Pratap09@",
+      "role": "Reader",
+      "xp": 100,
+      "completedStories": [],
+      "usedFreeRetreatStories": [],
+      "id": "drhgsxySILk"
+    }
+  ],
+  "Stories": [
+    {
+      "id": "EI9RnbebkfU",
+      "title": "The Lost Kingdom",
+      "author": "Admin",
+      "genre": "adventure",
+      "status": "published",
+      "description": "A branching adventure where your decisions determine the fate of your journey.",
+      "imageURL": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=80",
+      "nodes": [
+        {
+          "id": "df46de14-93ee-44b9-92b4-29baeffd5e10",
+          "title": "The Village",
+          "text": "You stand at the center of a mysterious village. Two paths lie before you.",
+          "location": "village",
+          "characters": [
+            "Traveler"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "ab416fcd-10a4-42d2-a267-37fc3210086a",
+              "text": "Enter the Dark Forests",
+              "targetNodeId": "21f9621d-c1fe-4ed6-8c8b-166957cad2bd"
+            },
+            {
+              "id": "30e802ad-f394-4d4d-80eb-af30fb5843fb",
+              "text": "Visit the Castle",
+              "targetNodeId": "48bb5568-e06c-4c31-a555-836f12278793"
+            }
+          ]
+        },
+        {
+          "id": "21f9621d-c1fe-4ed6-8c8b-166957cad2bd",
+          "title": "The Dark Forest",
+          "text": "The trees grow taller around you. You hear something moving in the shadows.",
+          "location": "Dark Forest",
+          "characters": [
+            "Traveler",
+            "Guardian"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "b0b959ca-24dd-4ddc-9165-504b2549747b",
+              "text": "Follow the mysterious path",
+              "targetNodeId": "28eab7b2-48fd-4572-8455-1f7e4149c37a"
+            },
+            {
+              "id": "26b95f36-d31b-42fb-ab8d-469cf43a0b6f",
+              "text": "Turn back to the village",
+              "targetNodeId": "510e9ae8-a1e3-467e-abaf-dcebc9d7546e"
+            }
+          ]
+        },
+        {
+          "id": "48bb5568-e06c-4c31-a555-836f12278793",
+          "title": "The Ancient Castle",
+          "text": "You enter the castle and find the mysterious king waiting for you.",
+          "location": "Ancient Castle",
+          "characters": [
+            "Traveler",
+            "King"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "0e7ac58f-20f0-4562-9232-1e2bb5a0b1d6",
+              "text": "Challenge the King",
+              "targetNodeId": "9c7f9e72-a761-4279-abe2-0f70a05bdb39"
+            }
+          ]
+        },
+        {
+          "id": "28eab7b2-48fd-4572-8455-1f7e4149c37a",
+          "title": "The Hidden Treasure",
+          "text": "You follow the path and discover a legendary treasure hidden beneath the ancient trees.",
+          "location": "Hidden Cave",
+          "characters": [
+            "Traveler"
+          ],
+          "isEnding": true,
+          "endingType": "good",
+          "choices": []
+        },
+        {
+          "id": "510e9ae8-a1e3-467e-abaf-dcebc9d7546e",
+          "title": "Back to the Village",
+          "text": "You safely return to the village. Perhaps another adventure awaits you.",
+          "location": "Village",
+          "characters": [
+            "Traveler"
+          ],
+          "isEnding": true,
+          "endingType": "neutral",
+          "choices": []
+        },
+        {
+          "id": "9c7f9e72-a761-4279-abe2-0f70a05bdb39",
+          "title": "The King's Victory",
+          "text": "The king defeats you. Your journey ends inside the ancient castle.",
+          "location": "Ancient Castle",
+          "characters": [
+            "Traveler",
+            "King"
+          ],
+          "isEnding": true,
+          "endingType": "bad",
+          "choices": []
+        }
+      ],
+      "startNodeId": "df46de14-93ee-44b9-92b4-29baeffd5e10"
+    },
+    {
+      "id": "XpDv3WATcQE",
+      "title": "THE HOLLOW MANOR MURDER",
+      "author": "Admin",
+      "genre": "mystery",
+      "status": "published",
+      "description": "Charles Ashford, wealthy owner of Hollow Manor, is found dead in his locked study during his annual dinner party. You are Detective Maya Reyes, called in that night. Five guests remain in the house.\n\nSuspects:\n\nEleanor Ashford — the widow, set to inherit everything\nVictor Cole — Charles's business partner, recently caught embezzling\nDr. Simon Wren — family physician, was having an affair with Eleanor\nPriya Malhotra — Charles's estranged daughter, cut out of the will last month\nThomas Reed — the butler, been with the family 20 years",
+      "imageURL": "https://images.unsplash.com/photo-1509114397022-ed747cca3f65?auto=format&fit=crop&w=1000&q=80",
+      "nodes": [
+        {
+          "id": "9af4d6ac-90b3-4a50-87ea-aad50520acbc",
+          "title": "THE STUDY",
+          "text": "The study is locked from inside. Charles lies by his desk, a letter opener in his chest. A whiskey glass sits half-full. The window is slightly open.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "d9fce4a0-a19f-4ada-a303-259bac6bb069",
+              "text": "Examine the body and wound",
+              "targetNodeId": "74de9dcb-c236-4e8e-94a1-5f46900f0cff"
+            },
+            {
+              "id": "5425824f-33b0-4cbc-b1a8-de595a52fff9",
+              "text": "Check the window first",
+              "targetNodeId": "243334ef-0e38-4c15-9734-a0ca13070e6a"
+            },
+            {
+              "id": "5c253bc3-9580-42c0-acd0-a98a84e7d021",
+              "text": "Question the butler immediately",
+              "targetNodeId": "17faa8c9-6d7c-42d9-928c-659029ccb6df"
+            }
+          ]
+        },
+        {
+          "id": "74de9dcb-c236-4e8e-94a1-5f46900f0cff",
+          "title": "THE WOUND",
+          "text": "The angle of the wound suggests the killer was left-handed and roughly Charles's height or shorter. No defensive wounds — he knew his attacker.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "f85aa819-d3cf-4228-8460-690415315e96",
+              "text": "Check who in the house is left-handed",
+              "targetNodeId": "b664c129-6388-4e60-8065-0b80a08ef9f3"
+            },
+            {
+              "id": "80bf4182-4e85-49c0-baa7-757933909972",
+              "text": "Dust the letter opener for prints",
+              "targetNodeId": "b0f16360-a1ac-430e-88f8-86261d3607cf"
+            },
+            {
+              "id": "7c426424-5f3b-4dc5-ad44-3761e18104ed",
+              "text": "Move on without noting handedness",
+              "targetNodeId": "9571dabc-1dd1-4141-8d5f-7849dcda456d"
+            }
+          ]
+        },
+        {
+          "id": "243334ef-0e38-4c15-9734-a0ca13070e6a",
+          "title": "THE WINDOW",
+          "text": "Muddy footprints lead from the window to the rose bushes outside — but the mud is dry, at least a day old. A red herring; someone used this window earlier, unrelated to tonight.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "57e5fa6f-361c-4216-8666-f91ab095e519",
+              "text": "tracking the footprints outside",
+              "targetNodeId": "c62d02a4-10cb-4b6f-abb2-5a2cf6e00750"
+            },
+            {
+              "id": "82779109-af4d-4086-8dda-a4b1a94ca86f",
+              "text": "Dismiss the window and return to the body",
+              "targetNodeId": "74de9dcb-c236-4e8e-94a1-5f46900f0cff"
+            }
+          ]
+        },
+        {
+          "id": "17faa8c9-6d7c-42d9-928c-659029ccb6df",
+          "title": "QUESTIONING THOMAS REED",
+          "text": "Thomas says he heard raised voices around 9 PM but couldn't make out words. He was polishing silver in the pantry — no alibi witness.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "68d92081-e60e-4982-b9d0-03e737c0ae22",
+              "text": "Press him on the argument",
+              "targetNodeId": "998bce0a-12d6-4c4a-8cc2-0d4e30825289"
+            },
+            {
+              "id": "cc927524-3e5c-449a-8f32-f890a29145dc",
+              "text": "Ask who else was near the study at 9 PM",
+              "targetNodeId": "afd1d898-5545-42a0-9948-b1c193580e1e"
+            }
+          ]
+        },
+        {
+          "id": "b664c129-6388-4e60-8065-0b80a08ef9f3",
+          "title": "LEFT-HANDED SUSPECTS",
+          "text": "Victor Cole and Priya Malhotra are both left-handed. Eleanor and Dr. Wren are right-handed. Thomas is ambidextrous, an old detail from his military days.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "0bd8ca4e-d7d3-4d92-a30f-f4d8732f99e2",
+              "text": "Focus the investigation on Victor",
+              "targetNodeId": "84e9d78c-ed10-45d7-8a0e-5c01f5f12476"
+            },
+            {
+              "id": "beb08006-97fb-4104-b719-f89ce900c39b",
+              "text": "Focus the investigation on Priya",
+              "targetNodeId": "2c9a45e4-4589-4524-8a43-18b2870474c8"
+            },
+            {
+              "id": "9961d603-f5e8-42f1-84f4-53e53f5b18d2",
+              "text": "Re-check Thomas's ambidexterity claim",
+              "targetNodeId": "7377d1ad-1f00-41fa-b39a-cc5a33518a7b"
+            }
+          ]
+        },
+        {
+          "id": "b0f16360-a1ac-430e-88f8-86261d3607cf",
+          "title": "FINGERPRINTS",
+          "text": "The letter opener has been wiped clean — no prints at all. This tells you the killer was careful, not careless. Someone premeditated this, or panicked and thought fast.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "5501f40a-a033-46cb-9284-21ffb411f43d",
+              "text": "Ask the household who owns gloves",
+              "targetNodeId": "cfd26f4e-f10e-4a70-99a0-b241f47c2d4f"
+            },
+            {
+              "id": "d1714f6e-f9ad-465f-ad63-68e741866ade",
+              "text": "Interview Eleanor about the will",
+              "targetNodeId": "45f90da7-0018-4e24-a132-1a78e90549e7"
+            }
+          ]
+        },
+        {
+          "id": "998bce0a-12d6-4c4a-8cc2-0d4e30825289",
+          "title": "THOMAS UNDER PRESSURE",
+          "text": "Thomas breaks slightly — admits the voices were Charles and Victor, arguing about \"the missing forty thousand.\" He didn't mention it earlier out of loyalty.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "4e750f4c-6986-4fa4-8073-5f23a5eb8a61",
+              "text": "Confront Victor with this",
+              "targetNodeId": "84e9d78c-ed10-45d7-8a0e-5c01f5f12476"
+            },
+            {
+              "id": "018d8957-6bd7-43bc-ad10-547ce74a642d",
+              "text": "Ask Thomas if he's protecting someone else",
+              "targetNodeId": "ef3412d6-c88a-4de0-876c-ff18c9d118d6"
+            }
+          ]
+        },
+        {
+          "id": "afd1d898-5545-42a0-9948-b1c193580e1e",
+          "title": "WHO WAS NEARBY",
+          "text": "Thomas recalls Dr. Wren walking toward the study around 8:50 PM, and Eleanor going upstairs shortly after. Priya was in the garden the whole evening, alone.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "5196f580-6d7a-4a96-8779-1b0c4ba51b2f",
+              "text": "Question Dr. Wren about the study visit",
+              "targetNodeId": "8b00cf57-30eb-49a0-94f9-5ef4a438a626"
+            },
+            {
+              "id": "01338338-0735-4eea-b9f4-fa47ed9469c2",
+              "text": "Question Eleanor about going upstairs",
+              "targetNodeId": "45f90da7-0018-4e24-a132-1a78e90549e7"
+            }
+          ]
+        },
+        {
+          "id": "9571dabc-1dd1-4141-8d5f-7849dcda456d",
+          "title": "MISSED CLUE (Handedness Ignored)",
+          "text": "Without the handedness detail, your suspect pool stays wide open and every later interrogation is weaker. You'll need extra evidence later to compensate.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "04c6563d-2ca9-4b54-81f2-c42f218efd24",
+              "text": "Move on to question the household",
+              "targetNodeId": "17faa8c9-6d7c-42d9-928c-659029ccb6df"
+            }
+          ]
+        },
+        {
+          "id": "c62d02a4-10cb-4b6f-abb2-5a2cf6e00750",
+          "title": "DEAD END",
+          "text": "You lose nearly an hour tracking a lead that goes nowhere. The real killer uses this time to destroy evidence.\n\nEffect: One key clue is now burned and unavailable later.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "b07b19ed-e881-48f8-a7b9-4a57d82e821b",
+              "text": "Give up on the footprints and return to the body",
+              "targetNodeId": "74de9dcb-c236-4e8e-94a1-5f46900f0cff"
+            }
+          ]
+        },
+        {
+          "id": "84e9d78c-ed10-45d7-8a0e-5c01f5f12476",
+          "title": "VICTOR COLE",
+          "text": "Victor admits to the argument — Charles had discovered the embezzlement and threatened to go to the police that night. Victor swears he left the study alive at 9:05 PM and went straight to the bar for a drink. The bartender, a hired caterer, can't be found for confirmation yet.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "6587c328-5295-4dc7-8c21-5e8868cf90fd",
+              "text": "Track down the caterer to confirm the alibi",
+              "targetNodeId": "64b96649-d2ec-4ebc-9686-de17c3eb2483"
+            },
+            {
+              "id": "db1ba9b6-c22b-4512-9d24-4eaee14dae72",
+              "text": "Arrest Victor now on motive and handedness alone",
+              "targetNodeId": "e6f78580-c010-4c2e-90a0-12aa2f319c97"
+            },
+            {
+              "id": "52c686bf-9631-4c3a-83bb-28e2060971f0",
+              "text": "Keep him as a suspect, investigate Priya",
+              "targetNodeId": "2c9a45e4-4589-4524-8a43-18b2870474c8"
+            }
+          ]
+        },
+        {
+          "id": "2c9a45e4-4589-4524-8a43-18b2870474c8",
+          "title": "PRIYA MALHOTRA",
+          "text": "Priya, cut from the will, has clear motive but was seen by the gardener in the garden the entire night — except for a five-minute gap around 9 PM when she says she \"walked to clear her head.\" No witness for those five minutes.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "fa17a52f-67b0-4858-bdc1-28e61bf6a51b",
+              "text": "Search her room for evidence",
+              "targetNodeId": "7b013eb8-b2a5-4153-b490-e0cc4e17f63a"
+            },
+            {
+              "id": "3209bd12-b6e4-421e-86d0-e1f04f0f8bc4",
+              "text": "Ask the gardener to pin down the exact gap timing",
+              "targetNodeId": "00bde282-4d79-4339-b4c0-7f032dc6f55e"
+            }
+          ]
+        },
+        {
+          "id": "7377d1ad-1f00-41fa-b39a-cc5a33518a7b",
+          "title": "THOMAS'S SECRET",
+          "text": "Digging into Thomas's file, you learn he was quietly written out of an earlier version of Charles's will years ago after a dispute — a grudge no one else knew about. He's left-leaning ambidextrous, technically fitting the wound profile.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "d7b26011-22dc-4e52-a982-5ff6268c57d6",
+              "text": "Confront Thomas directly with this history",
+              "targetNodeId": "ef3412d6-c88a-4de0-876c-ff18c9d118d6"
+            },
+            {
+              "id": "d75f2f5a-6cae-48d2-9123-68facc0f233d",
+              "text": "Treat this as a minor detail and refocus on Victor/Priya",
+              "targetNodeId": "84e9d78c-ed10-45d7-8a0e-5c01f5f12476"
+            }
+          ]
+        },
+        {
+          "id": "cfd26f4e-f10e-4a70-99a0-b241f47c2d4f",
+          "title": "THE GLOVES",
+          "text": "A pair of Eleanor's leather gloves is found in the study wastebasket — burned slightly at the fingertips, as if someone tried to destroy trace evidence. Eleanor claims she \"hasn't worn those in months.\"",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "bb783e10-4fbe-44db-a70e-0f535e8013f7",
+              "text": "Confront Eleanor with the gloves",
+              "targetNodeId": "45f90da7-0018-4e24-a132-1a78e90549e7"
+            },
+            {
+              "id": "7b0fbcc5-4b38-4ece-88c2-86b3f7c60a73",
+              "text": "Have them tested for GSR/trace fiber first",
+              "targetNodeId": "3b342be5-b74d-40a7-b2fc-98c0ed251e90"
+            }
+          ]
+        },
+        {
+          "id": "45f90da7-0018-4e24-a132-1a78e90549e7",
+          "title": "ELEANOR ASHFORD",
+          "text": "Eleanor is composed, almost too composed. She admits the marriage was unhappy and she knew about Charles's affairs, but denies killing him. She says she went upstairs at 9 PM to \"get some air\" — no one saw her go up or come down.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "6df2069c-bb6f-4471-bab9-ae330dea10e6",
+              "text": "Ask directly about Dr. Wren",
+              "targetNodeId": "8b00cf57-30eb-49a0-94f9-5ef4a438a626"
+            },
+            {
+              "id": "92db5852-0a16-4271-a4f3-aef685dac0a3",
+              "text": "Push on the burned gloves (if found)",
+              "targetNodeId": "3b342be5-b74d-40a7-b2fc-98c0ed251e90"
+            },
+            {
+              "id": "93d34dd0-8847-4477-8758-78a8ce0be9a7",
+              "text": "Arrest Eleanor now on opportunity and demeanor alone",
+              "targetNodeId": "588431dd-86c9-4dc2-bbbe-4a33a1523260"
+            }
+          ]
+        },
+        {
+          "id": "ef3412d6-c88a-4de0-876c-ff18c9d118d6",
+          "title": "THOMAS CONFESSES A DIFFERENT SECRET",
+          "text": "Thomas isn't the killer — but he saw something. Around 9 PM, through the hallway window, he saw Dr. Wren leaving the study wiping his hands on a handkerchief. He stayed quiet out of fear of losing his position for gossiping about the family.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "c41835e3-d858-48aa-bace-c8f70f4d6ed1",
+              "text": "Confront Dr. Wren with this eyewitness account",
+              "targetNodeId": "8b00cf57-30eb-49a0-94f9-5ef4a438a626"
+            }
+          ]
+        },
+        {
+          "id": "8b00cf57-30eb-49a0-94f9-5ef4a438a626",
+          "title": "DR. SIMON WREN",
+          "text": "Confronted, Wren cracks. He'd gone to ask Charles for money to \"start over\" with Eleanor once they left together — Charles laughed at him and threatened to expose the affair publicly, ruining his medical license. In the heat of it, Wren grabbed the letter opener. He wiped it clean out of pure panic, then dropped Eleanor's gloves (taken earlier that day after an affair rendezvous) into the wastebasket by mistake, burning the tips later in a candle to destroy fiber evidence.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "6a07070a-030f-4e9f-8dc1-2db3b9659710",
+              "text": "You have eyewitness (Thomas), motive, and physical evidence — arrest Dr. Wren",
+              "targetNodeId": "8ebb2fd9-4e3c-4a16-9545-f26f4496168c"
+            },
+            {
+              "id": "ece60066-f289-428c-b519-2ec5082b4d14",
+              "text": "You feel the case is still circumstantial and hold off",
+              "targetNodeId": "3a13c868-9df8-4fad-9efa-e8a0ac3d6566"
+            }
+          ]
+        },
+        {
+          "id": "64b96649-d2ec-4ebc-9686-de17c3eb2483",
+          "title": "THE CATERER",
+          "text": "You track down the caterer. She confirms Victor was at the bar getting a drink from 9:03 PM onward — he could not have made it back upstairs in time. Victor is cleared of opportunity.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "cb57f0f0-cfcb-447e-9d54-fade74b3ac18",
+              "text": "Investigate Priya Malhotra",
+              "targetNodeId": "2c9a45e4-4589-4524-8a43-18b2870474c8"
+            },
+            {
+              "id": "5ba78efd-be24-4bf1-ae94-16abb7c8a790",
+              "text": "Turn attention to Dr. Wren",
+              "targetNodeId": "8b00cf57-30eb-49a0-94f9-5ef4a438a626"
+            }
+          ]
+        },
+        {
+          "id": "7b013eb8-b2a5-4153-b490-e0cc4e17f63a",
+          "title": "PRIYA'S ROOM",
+          "text": "Nothing incriminating — just old family photos and a diary expressing hurt over being cut from the will, not rage. This softens her as a suspect but proves nothing either way.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "4936a4fd-a0ac-4ba0-aa6b-dbb1c96660f7",
+              "text": "Head back to check her alibi",
+              "targetNodeId": "00bde282-4d79-4339-b4c0-7f032dc6f55e"
+            }
+          ]
+        },
+        {
+          "id": "00e72094-436d-48f9-8384-6088d945c69b",
+          "title": "THE LEDGER (if not burned)",
+          "text": "If NODE 10 was avoided, you find Charles's private ledger showing he'd also discovered irregular payments to Dr. Wren — hush money for staying quiet about something medical. This adds early suspicion toward Wren well before NODE 17.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "0a814f70-099a-4fd7-9527-b30de89d30f8",
+              "text": "Bring the ledger into your questioning",
+              "targetNodeId": "afd1d898-5545-42a0-9948-b1c193580e1e"
+            }
+          ]
+        },
+        {
+          "id": "00bde282-4d79-4339-b4c0-7f032dc6f55e",
+          "title": "THE GARDENER'S TIMELINE",
+          "text": "The gardener confirms Priya's five-minute gap was spent by the fountain, visible from the kitchen window — the kitchen maid backs this up. Priya is cleared of opportunity entirely.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "2b212c26-afea-4cf4-a6e6-525a1d9af07a",
+              "text": "Return to investigating Eleanor and Wren",
+              "targetNodeId": "45f90da7-0018-4e24-a132-1a78e90549e7"
+            }
+          ]
+        },
+        {
+          "id": "3b342be5-b74d-40a7-b2fc-98c0ed251e90",
+          "title": "FORENSICS RESULT",
+          "text": "Trace fiber testing on the burned gloves finds skin cells matching Dr. Wren's — he wore Eleanor's gloves briefly, likely to avoid leaving prints, then panicked and disposed of them.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "4179a2f8-e938-47f8-b6b7-6fe79b2e41d5",
+              "text": "Confront Dr. Wren with the evidence",
+              "targetNodeId": "8b00cf57-30eb-49a0-94f9-5ef4a438a626"
+            }
+          ]
+        },
+        {
+          "id": "3a13c868-9df8-4fad-9efa-e8a0ac3d6566",
+          "title": "HESITATION",
+          "text": "Without an arrest, Dr. Wren has enough time overnight to destroy the handkerchief and flee the county by morning. The case goes cold.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": false,
+          "endingType": null,
+          "choices": [
+            {
+              "id": "f7f9fe71-e0a2-4580-9b78-12186ed422ad",
+              "text": "Close the case file",
+              "targetNodeId": "64da3db8-4902-4815-9697-0be62d6a9266"
+            }
+          ]
+        },
+        {
+          "id": "8ebb2fd9-4e3c-4a16-9545-f26f4496168c",
+          "title": "ENDING A — CASE SOLVED (Correct Person)",
+          "text": "Dr. Simon Wren is arrested and, faced with the eyewitness account, forensic gloves, and motive, confesses fully. Charles Ashford's murder is solved. Eleanor is devastated but relieved the truth is out.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": true,
+          "endingType": "good",
+          "choices": []
+        },
+        {
+          "id": "e6f78580-c010-4c2e-90a0-12aa2f319c97",
+          "title": "ENDING B — WRONG PERSON (Victor Cole)",
+          "text": "Victor is arrested on motive and handedness alone. Weeks later, the caterer surfaces and confirms his alibi. Victor is released, the real killer has fled, and your reputation takes a hit.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": true,
+          "endingType": "tragic",
+          "choices": []
+        },
+        {
+          "id": "588431dd-86c9-4dc2-bbbe-4a33a1523260",
+          "title": "ENDING C — WRONG PERSON (Eleanor Ashford)",
+          "text": "Eleanor is arrested on opportunity and demeanor. Her lawyer tears the case apart in court — no physical evidence ties her to the murder. She's acquitted, and the real killer, Dr. Wren, is never investigated again.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": true,
+          "endingType": "tragic",
+          "choices": []
+        },
+        {
+          "id": "64da3db8-4902-4815-9697-0be62d6a9266",
+          "title": "ENDING D — CASE UNSOLVED",
+          "text": "Insufficient evidence and hesitation let the true killer escape before arrest. Charles Ashford's murder joins the county's cold case files.",
+          "location": "Hollow Mansion",
+          "characters": [
+            "Maya Reyes",
+            "Eleanor Ashford",
+            "Victor Cole",
+            "Simon Wren",
+            "Priya Malhotra",
+            "Thomas Reed",
+            "Charles Ashford"
+          ],
+          "isEnding": true,
+          "endingType": "bad",
+          "choices": []
+        }
+      ],
+      "startNodeId": "9af4d6ac-90b3-4a50-87ea-aad50520acbc"
+    },
+    {
+      "title": "The Starlight Odyssey",
+      "author": "Explorer Dave",
+      "authorId": "usr_dave_123",
+      "genre": "sci-fi",
+      "status": "published",
+      "nodes": [
+        {
+          "id": "s1",
+          "title": "Launch",
+          "isEnding": false,
+          "choices": [
+            {
+              "text": "Enter Warp",
+              "targetNodeId": "s2"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Arrival",
+          "isEnding": true,
+          "endingType": "good",
+          "choices": []
+        }
+      ],
+      "startNodeId": "s1",
+      "id": "4aPTZ5v3aNI"
+    },
+    {
+      "title": "The Starlight Odyssey",
+      "author": "Explorer Dave",
+      "authorId": "usr_dave_123",
+      "genre": "sci-fi",
+      "status": "published",
+      "nodes": [
+        {
+          "id": "s1",
+          "title": "Launch",
+          "isEnding": false,
+          "choices": [
+            {
+              "text": "Enter Warp",
+              "targetNodeId": "s2"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Arrival",
+          "isEnding": true,
+          "endingType": "good",
+          "choices": []
+        }
+      ],
+      "startNodeId": "s1",
+      "id": "QqEACV-uB5A"
+    },
+    {
+      "title": "The Starlight Odyssey",
+      "author": "Explorer Dave",
+      "authorId": "usr_dave_123",
+      "genre": "sci-fi",
+      "status": "published",
+      "nodes": [
+        {
+          "id": "s1",
+          "title": "Launch",
+          "isEnding": false,
+          "choices": [
+            {
+              "text": "Enter Warp",
+              "targetNodeId": "s2"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Arrival",
+          "isEnding": true,
+          "endingType": "good",
+          "choices": []
+        }
+      ],
+      "startNodeId": "s1",
+      "id": "OGITkzVn450"
+    },
+    {
+      "title": "The Starlight Odyssey",
+      "author": "Explorer Dave",
+      "authorId": "usr_dave_123",
+      "genre": "sci-fi",
+      "status": "published",
+      "nodes": [
+        {
+          "id": "s1",
+          "title": "Launch",
+          "isEnding": false,
+          "choices": [
+            {
+              "text": "Enter Warp",
+              "targetNodeId": "s2"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Arrival",
+          "isEnding": true,
+          "endingType": "good",
+          "choices": []
+        }
+      ],
+      "startNodeId": "s1",
+      "id": "0D1QlnL5TP0"
+    }
+  ],
+  "StorySessions": [
+    {
+      "userId": "1",
+      "storyId": "EI9RnbebkfU",
+      "currentNodeId": "28eab7b2-48fd-4572-8455-1f7e4149c37a",
+      "traversalPath": [
+        {
+          "nodeId": "df46de14-93ee-44b9-92b4-29baeffd5e10",
+          "title": "The Village",
+          "choiceText": null
+        },
+        {
+          "nodeId": "21f9621d-c1fe-4ed6-8c8b-166957cad2bd",
+          "title": "The Dark Forest",
+          "choiceText": "Enter the Dark Forests"
+        },
+        {
+          "nodeId": "28eab7b2-48fd-4572-8455-1f7e4149c37a",
+          "title": "The Hidden Treasure",
+          "choiceText": "Follow the mysterious path"
+        }
+      ],
+      "freeRetreatUsed": true,
+      "xp": 95,
+      "alreadyClaimed": true,
+      "ended": true,
+      "endingType": "good",
+      "id": "BNyU_1rwCcU"
+    },
+    {
+      "userId": "1",
+      "storyId": "_boJoukTSRc",
+      "currentNodeId": "7dace252-e0b5-4e24-9b79-12e835b324ec",
+      "traversalPath": [
+        {
+          "nodeId": "7dace252-e0b5-4e24-9b79-12e835b324ec",
+          "title": "The Dark Forest",
+          "choiceText": null
+        }
+      ],
+      "freeRetreatUsed": false,
+      "xp": 95,
+      "alreadyClaimed": false,
+      "ended": false,
+      "endingType": null,
+      "id": "bfW-YPYRo7Y"
+    },
+    {
+      "userId": "1",
+      "storyId": "oX2B5yEHFOc",
+      "currentNodeId": "7988ee94-bd29-4c68-a3d7-24c2e58d16e8",
+      "traversalPath": [
+        {
+          "nodeId": "7988ee94-bd29-4c68-a3d7-24c2e58d16e8",
+          "title": "fdsfs",
+          "choiceText": null
+        }
+      ],
+      "freeRetreatUsed": false,
+      "xp": 95,
+      "alreadyClaimed": false,
+      "ended": false,
+      "endingType": null,
+      "id": "DqEXFEu_r6Q"
+    },
+    {
+      "userId": "1",
+      "storyId": "CjXoRJz8Djo",
+      "currentNodeId": "a8a841e6-ff16-4bde-901b-8360d4f06bb5",
+      "traversalPath": [
+        {
+          "nodeId": "a8a841e6-ff16-4bde-901b-8360d4f06bb5",
+          "title": "fdsfs",
+          "choiceText": null
+        }
+      ],
+      "freeRetreatUsed": false,
+      "xp": 95,
+      "alreadyClaimed": false,
+      "ended": false,
+      "endingType": null,
+      "id": "J3Gu1pauM-o"
+    },
+    {
+      "userId": "1",
+      "storyId": "EI9RnbebkfU",
+      "currentNodeId": "df46de14-93ee-44b9-92b4-29baeffd5e10",
+      "traversalPath": [
+        {
+          "nodeId": "df46de14-93ee-44b9-92b4-29baeffd5e10",
+          "title": "The Village",
+          "choiceText": null
+        }
+      ],
+      "freeRetreatUsed": true,
+      "xp": 85,
+      "alreadyClaimed": true,
+      "ended": false,
+      "endingType": null,
+      "id": "jx6XhczVsP8"
+    },
+    {
+      "userId": "7E0vmNxETng",
+      "storyId": "EI9RnbebkfU",
+      "currentNodeId": "510e9ae8-a1e3-467e-abaf-dcebc9d7546e",
+      "traversalPath": [
+        {
+          "nodeId": "df46de14-93ee-44b9-92b4-29baeffd5e10",
+          "title": "The Village",
+          "choiceText": null
+        },
+        {
+          "nodeId": "21f9621d-c1fe-4ed6-8c8b-166957cad2bd",
+          "title": "The Dark Forest",
+          "choiceText": "Enter the Dark Forests"
+        },
+        {
+          "nodeId": "510e9ae8-a1e3-467e-abaf-dcebc9d7546e",
+          "title": "Back to the Village",
+          "choiceText": "Turn back to the village"
+        }
+      ],
+      "freeRetreatUsed": false,
+      "xp": 105,
+      "alreadyClaimed": false,
+      "ended": true,
+      "endingType": "neutral",
+      "id": "dNmeSP5izP0"
+    },
+    {
+      "userId": "KFTY2yVChRw",
+      "storyId": "EI9RnbebkfU",
+      "currentNodeId": "510e9ae8-a1e3-467e-abaf-dcebc9d7546e",
+      "traversalPath": [
+        {
+          "nodeId": "df46de14-93ee-44b9-92b4-29baeffd5e10",
+          "title": "The Village",
+          "choiceText": null
+        },
+        {
+          "nodeId": "21f9621d-c1fe-4ed6-8c8b-166957cad2bd",
+          "title": "The Dark Forest",
+          "choiceText": "Enter the Dark Forests"
+        },
+        {
+          "nodeId": "510e9ae8-a1e3-467e-abaf-dcebc9d7546e",
+          "title": "Back to the Village",
+          "choiceText": "Turn back to the village"
+        }
+      ],
+      "freeRetreatUsed": false,
+      "xp": 105,
+      "alreadyClaimed": true,
+      "ended": true,
+      "endingType": "neutral",
+      "id": "Ba-3h1M6jHQ"
+    },
+    {
+      "userId": "cOk-jAbhMgQ",
+      "storyId": "EI9RnbebkfU",
+      "currentNodeId": "510e9ae8-a1e3-467e-abaf-dcebc9d7546e",
+      "traversalPath": [
+        {
+          "nodeId": "df46de14-93ee-44b9-92b4-29baeffd5e10",
+          "title": "The Village",
+          "choiceText": null
+        },
+        {
+          "nodeId": "21f9621d-c1fe-4ed6-8c8b-166957cad2bd",
+          "title": "The Dark Forest",
+          "choiceText": "Enter the Dark Forests"
+        },
+        {
+          "nodeId": "510e9ae8-a1e3-467e-abaf-dcebc9d7546e",
+          "title": "Back to the Village",
+          "choiceText": "Turn back to the village"
+        }
+      ],
+      "freeRetreatUsed": false,
+      "xp": 105,
+      "alreadyClaimed": true,
+      "ended": true,
+      "endingType": "neutral",
+      "id": "7kfUU7ErmI0"
+    },
+    {
+      "userId": "1",
+      "storyId": "XpDv3WATcQE",
+      "currentNodeId": "e6f78580-c010-4c2e-90a0-12aa2f319c97",
+      "traversalPath": [
+        {
+          "nodeId": "9af4d6ac-90b3-4a50-87ea-aad50520acbc",
+          "title": "THE STUDY",
+          "choiceText": null
+        },
+        {
+          "nodeId": "74de9dcb-c236-4e8e-94a1-5f46900f0cff",
+          "title": "THE WOUND",
+          "choiceText": "Examine the body and wound"
+        },
+        {
+          "nodeId": "9571dabc-1dd1-4141-8d5f-7849dcda456d",
+          "title": "MISSED CLUE (Handedness Ignored)",
+          "choiceText": "Move on without noting handedness"
+        },
+        {
+          "nodeId": "17faa8c9-6d7c-42d9-928c-659029ccb6df",
+          "title": "QUESTIONING THOMAS REED",
+          "choiceText": "Move on to question the household"
+        },
+        {
+          "nodeId": "998bce0a-12d6-4c4a-8cc2-0d4e30825289",
+          "title": "THOMAS UNDER PRESSURE",
+          "choiceText": "Press him on the argument"
+        },
+        {
+          "nodeId": "84e9d78c-ed10-45d7-8a0e-5c01f5f12476",
+          "title": "VICTOR COLE",
+          "choiceText": "Confront Victor with this"
+        },
+        {
+          "nodeId": "e6f78580-c010-4c2e-90a0-12aa2f319c97",
+          "title": "ENDING B — WRONG PERSON (Victor Cole)",
+          "choiceText": "Arrest Victor now on motive and handedness alone"
+        }
+      ],
+      "freeRetreatUsed": true,
+      "xp": 65,
+      "alreadyClaimed": true,
+      "ended": true,
+      "endingType": "tragic",
+      "id": "ikTTU5eGE4Q",
+      "visitedNodeIds": [
+        "17faa8c9-6d7c-42d9-928c-659029ccb6df",
+        "afd1d898-5545-42a0-9948-b1c193580e1e",
+        "8b00cf57-30eb-49a0-94f9-5ef4a438a626",
+        "8ebb2fd9-4e3c-4a16-9545-f26f4496168c",
+        "74de9dcb-c236-4e8e-94a1-5f46900f0cff",
+        "b664c129-6388-4e60-8065-0b80a08ef9f3",
+        "2c9a45e4-4589-4524-8a43-18b2870474c8",
+        "7b013eb8-b2a5-4153-b490-e0cc4e17f63a",
+        "00bde282-4d79-4339-b4c0-7f032dc6f55e",
+        "45f90da7-0018-4e24-a132-1a78e90549e7",
+        "3b342be5-b74d-40a7-b2fc-98c0ed251e90",
+        "3a13c868-9df8-4fad-9efa-e8a0ac3d6566",
+        "64da3db8-4902-4815-9697-0be62d6a9266",
+        "243334ef-0e38-4c15-9734-a0ca13070e6a",
+        "c62d02a4-10cb-4b6f-abb2-5a2cf6e00750",
+        "b0f16360-a1ac-430e-88f8-86261d3607cf",
+        "cfd26f4e-f10e-4a70-99a0-b241f47c2d4f",
+        "9571dabc-1dd1-4141-8d5f-7849dcda456d",
+        "998bce0a-12d6-4c4a-8cc2-0d4e30825289",
+        "84e9d78c-ed10-45d7-8a0e-5c01f5f12476",
+        "64b96649-d2ec-4ebc-9686-de17c3eb2483",
+        "e6f78580-c010-4c2e-90a0-12aa2f319c97"
+      ]
+    },
+    {
+      "userId": "1",
+      "storyId": "XpDv3WATcQE",
+      "currentNodeId": "b664c129-6388-4e60-8065-0b80a08ef9f3",
+      "traversalPath": [
+        {
+          "nodeId": "9af4d6ac-90b3-4a50-87ea-aad50520acbc",
+          "title": "THE STUDY",
+          "choiceText": null
+        },
+        {
+          "nodeId": "74de9dcb-c236-4e8e-94a1-5f46900f0cff",
+          "title": "THE WOUND",
+          "choiceText": "Examine the body and wound"
+        },
+        {
+          "nodeId": "b664c129-6388-4e60-8065-0b80a08ef9f3",
+          "title": "LEFT-HANDED SUSPECTS",
+          "choiceText": "Check who in the house is left-handed"
+        }
+      ],
+      "visitedNodeIds": [
+        "9af4d6ac-90b3-4a50-87ea-aad50520acbc",
+        "74de9dcb-c236-4e8e-94a1-5f46900f0cff",
+        "b664c129-6388-4e60-8065-0b80a08ef9f3",
+        "7377d1ad-1f00-41fa-b39a-cc5a33518a7b",
+        "ef3412d6-c88a-4de0-876c-ff18c9d118d6",
+        "8b00cf57-30eb-49a0-94f9-5ef4a438a626",
+        "8ebb2fd9-4e3c-4a16-9545-f26f4496168c",
+        "243334ef-0e38-4c15-9734-a0ca13070e6a",
+        "c62d02a4-10cb-4b6f-abb2-5a2cf6e00750",
+        "b0f16360-a1ac-430e-88f8-86261d3607cf",
+        "cfd26f4e-f10e-4a70-99a0-b241f47c2d4f",
+        "45f90da7-0018-4e24-a132-1a78e90549e7",
+        "588431dd-86c9-4dc2-bbbe-4a33a1523260",
+        "17faa8c9-6d7c-42d9-928c-659029ccb6df",
+        "998bce0a-12d6-4c4a-8cc2-0d4e30825289",
+        "84e9d78c-ed10-45d7-8a0e-5c01f5f12476",
+        "64b96649-d2ec-4ebc-9686-de17c3eb2483",
+        "2c9a45e4-4589-4524-8a43-18b2870474c8",
+        "7b013eb8-b2a5-4153-b490-e0cc4e17f63a",
+        "00bde282-4d79-4339-b4c0-7f032dc6f55e",
+        "3b342be5-b74d-40a7-b2fc-98c0ed251e90",
+        "3a13c868-9df8-4fad-9efa-e8a0ac3d6566",
+        "64da3db8-4902-4815-9697-0be62d6a9266"
+      ],
+      "freeRetreatUsed": true,
+      "xp": 65,
+      "alreadyClaimed": true,
+      "ended": false,
+      "endingType": null,
+      "id": "MyUyP-DerDI"
+    }
+  ],
+  "Reviews": [
+    {
+      "id": "rev_1",
+      "storyId": "story_lost_kingdom",
+      "userId": "usr_reader_demo",
+      "userName": "Alex Vance",
+      "rating": 5,
+      "comment": "Incredible worldbuilding! The branching paths felt truly distinct and the time-warp retreat let me test every decision point.",
+      "timestamp": "2026-08-20 14:32"
+    },
+    {
+      "id": "rev_2",
+      "storyId": "story_lost_kingdom",
+      "userId": "usr_2",
+      "userName": "Elena Rostova",
+      "rating": 5,
+      "comment": "The astral sanctuary ending gave me chills. The ambient soundscape matched the mysterious forest mood perfectly!",
+      "timestamp": "2026-08-21 09:15"
+    },
+    {
+      "id": "rev_3",
+      "storyId": "story_neon_nexus",
+      "userId": "usr_3",
+      "userName": "Cipher_99",
+      "rating": 5,
+      "comment": "Peak cyberpunk atmosphere. The zero-day exploit branch leading to AI singularity was brilliant.",
+      "timestamp": "2026-08-22 18:40"
+    },
+    {
+      "id": "rev_4",
+      "storyId": "story_quantum_paradox",
+      "userId": "usr_4",
+      "userName": "Dr. Marcus",
+      "rating": 5,
+      "comment": "A masterclass in temporal causality and graph loops. The minimap visualization during reading is game-changing.",
+      "timestamp": "2026-08-23 11:20"
+    },
+    {
+      "id": "rev_5",
+      "storyId": "story_manor_mystery",
+      "userId": "usr_5",
+      "userName": "Sarah Holmes",
+      "rating": 4,
+      "comment": "Classic gothic Agatha Christie vibe with modern interactive branching. Loved unmasking the heir!",
+      "timestamp": "2026-08-24 10:05"
+    },
+    {
+      "storyId": "story_1787571732631",
+      "userId": "usr_reader_99",
+      "userName": "Luna",
+      "rating": 5,
+      "comment": "Short, punchy, and engaging starlight journey!",
+      "id": "no3ls_qV108",
+      "timestamp": "2026-08-24 17:12"
+    },
+    {
+      "storyId": "story_1787571757658",
+      "userId": "usr_reader_99",
+      "userName": "Luna",
+      "rating": 5,
+      "comment": "Short, punchy, and engaging starlight journey!",
+      "id": "l_gfeDBus68",
+      "timestamp": "2026-08-24 17:12"
+    },
+    {
+      "storyId": "story_1787571788928",
+      "userId": "usr_reader_99",
+      "userName": "Luna",
+      "rating": 5,
+      "comment": "Short, punchy, and engaging starlight journey!",
+      "id": "0IBLlKxEDas",
+      "timestamp": "2026-08-24 17:13"
+    },
+    {
+      "storyId": "story_1787571809693",
+      "userId": "usr_reader_99",
+      "userName": "Luna",
+      "rating": 5,
+      "comment": "Short, punchy, and engaging starlight journey!",
+      "id": "BKrGqwJg0a8",
+      "timestamp": "2026-08-24 17:13"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

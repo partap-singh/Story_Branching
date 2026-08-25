@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | Dynamic Story Engine</title>
+    <link rel="stylesheet" href="../../css/signup.css">
+</head>
+<body>
+    <script src="../../js/data_service.js"></script>
+    <div class="signup-wrapper">
+        <form onsubmit="handleRegister(event);">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h1 style="font-family: var(--font-display); font-size: 26px; text-transform: uppercase; margin-bottom: 4px;">Join the Universe</h1>
+                <p style="font-weight: 700; font-size: 13px; color: #444;">Create an explorer account and start with +100 XP</p>
+            </div>
+
+            <label for="name">EXPLORER NAME</label>
+            <input type="text" id="name" placeholder="e.g. Captain Nova" required autocomplete="name">
+            
+            <label for="email">EMAIL ADDRESS</label>
+            <input type="email" id="email" placeholder="e.g. nova@space.org" required autocomplete="email">
+            
+            <label for="password">CREATE PASSWORD</label>
+            <div class="password-container">
+                <input type="password" placeholder="Create Password" id="password" required autocomplete="new-password">
+                <button type="button" class="eye-toggle" onclick="togglePassword('password', 'eyeSymbol1')" aria-label="Toggle password visibility">
+                    <span id="eyeSymbol1">👁️</span>
+                </button>
+            </div>
+
+            <label for="cpassword">CONFIRM PASSWORD</label>
+            <div class="password-container">
+                <input type="password" placeholder="Confirm Password" id="cpassword" required autocomplete="new-password">
+                <button type="button" class="eye-toggle" onclick="togglePassword('cpassword', 'eyeSymbol2')" aria-label="Toggle confirm password visibility">
+                    <span id="eyeSymbol2">👁️</span>
+                </button>
+            </div>
+
+            <input type="submit" value="CREATE ACCOUNT &rarr;" id="signupBtn">
+
+            <a href="login.html" class="login-redirect-btn">
+                Already registered? Sign In here
+            </a>
+        </form>
+    </div>
+
+    <script src="../../js/signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "dynamic-story-engine",
+  "version": "2.0.0",
+  "description": "AI-Powered Interactive Branching Story Engine with Directed Graph Theory Analytics",
+  "scripts": {
+    "server": "json-server --watch db.json --port 3000",
+    "start": "json-server --watch db.json --port 3000"
+  },
+  "dependencies": {
+    "json-server": "^1.0.0-beta.15"
+  }
+}
