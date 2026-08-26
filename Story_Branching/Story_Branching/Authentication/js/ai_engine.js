@@ -1,8 +1,4 @@
-/**
- * Dynamic Story Engine - AI / ML Intelligence Subsystem
- * Natural Language Processing, Sentiment & Emotion Atmosphere Analysis,
- * Generative Narrative Co-Pilot, and Cosine-Similarity Story Recommender.
- */
+
 
 class AIEngine {
     constructor() {
@@ -17,14 +13,6 @@ class AIEngine {
         };
     }
 
-    /* =========================================================
-       1. NLP SENTIMENT & EMOTION ATMOSPHERE ANALYZER
-    ========================================================= */
-
-    /**
-     * Perform lexical sentiment and emotional dimension analysis on scene text
-     * @param {string} text - Scene narrative prose
-     */
     analyzeScene(text) {
         if (!text || typeof text !== "string") {
             return this.getDefaultAtmosphere();
