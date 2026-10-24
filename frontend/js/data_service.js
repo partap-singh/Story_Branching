@@ -4,7 +4,18 @@
  * pre-seeded high-concept stories, and community user reviews.
  */
 
-const API_BASE = "http://localhost:3000";
+const getApiBase = () => {
+    if (typeof window !== "undefined") {
+        if (window.location.port === "5000" || window.location.origin.includes("localhost:5000")) {
+            return "/api";
+        }
+        return "http://localhost:5000/api";
+    }
+    return "http://localhost:5000/api";
+};
+
+const API_BASE = getApiBase();
+
 
 // Pre-seeded stories across multiple genres with complete branching graphs
 const SEED_STORIES = [
@@ -398,18 +409,40 @@ class DataService {
         }
     }
 
+    getAuthHeaders() {
+        let token = localStorage.getItem("auth_token");
+        let headers = { "Content-Type": "application/json" };
+        if (token) {
+            headers["Authorization"] = `Bearer ${token}`;
+        }
+        return headers;
+    }
+
     /* =========================================================
-       STORIES CRUD (High-Speed LocalStorage)
+       STORIES CRUD (Express REST API with Resilient Local Cache)
     ========================================================= */
 
     async getStories() {
+        try {
+            let res = await fetch(`${getApiBase()}/stories`);
+            if (res.ok) {
+                let json = await res.json();
+                let stories = json.data || json;
+                if (Array.isArray(stories) && stories.length > 0) {
+                    localStorage.setItem("app_stories", JSON.stringify(stories));
+                    return stories;
+                }
+            }
+        } catch (err) {
+            console.warn("Backend /api/stories unreachable, falling back to local cache:", err.message);
+        }
+
         let local = JSON.parse(localStorage.getItem("app_stories") || "[]");
         if (!local || local.length === 0) {
             localStorage.setItem("app_stories", JSON.stringify(SEED_STORIES));
             return SEED_STORIES;
         }
 
-        // Ensure distinct by ID
         let map = new Map();
         local.forEach(s => {
             if (s && s.id) map.set(s.id, s);
@@ -420,6 +453,16 @@ class DataService {
     }
 
     async getStoryById(id) {
+        try {
+            let res = await fetch(`${getApiBase()}/stories/${encodeURIComponent(id)}`);
+            if (res.ok) {
+                let json = await res.json();
+                if (json && json.data) return json.data;
+            }
+        } catch (err) {
+            console.warn(`Backend /api/stories/${id} unreachable, using local:`, err.message);
+        }
+
         let stories = await this.getStories();
         return stories.find(s => s.id === id) || null;
     }
@@ -436,6 +479,8 @@ class DataService {
         if (!story.imageURL) {
             story.imageURL = "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=80";
         }
+
+        // Cache locally first
         let localStories = JSON.parse(localStorage.getItem("app_stories") || "[]");
         let idx = localStories.findIndex(s => s.id === story.id);
         if (idx >= 0) {
@@ -444,15 +489,29 @@ class DataService {
             localStories.unshift(story);
         }
 
-        // Ensure distinct IDs
         let map = new Map();
         localStories.forEach(s => {
             if (s && s.id) map.set(s.id, s);
         });
         let updated = Array.from(map.values());
-
         localStorage.setItem("app_stories", JSON.stringify(updated));
         localStorage.setItem("currentStory", JSON.stringify(story));
+
+        // Persist to MongoDB via Express API
+        try {
+            let res = await fetch(`${getApiBase()}/stories/${encodeURIComponent(story.id)}`, {
+                method: "PUT",
+                headers: this.getAuthHeaders(),
+                body: JSON.stringify(story)
+            });
+            if (res.ok) {
+                let json = await res.json();
+                return json.data || story;
+            }
+        } catch (err) {
+            console.warn("Backend saveStory unreachable, saved to local cache only:", err.message);
+        }
+
         return story;
     }
 
@@ -474,6 +533,16 @@ class DataService {
             localStorage.setItem("app_reviews", JSON.stringify(reviews));
         } catch (e) {}
 
+        // Delete from MongoDB
+        try {
+            await fetch(`${getApiBase()}/stories/${encodeURIComponent(storyId)}`, {
+                method: "DELETE",
+                headers: this.getAuthHeaders()
+            });
+        } catch (err) {
+            console.warn("Backend deleteStory unreachable, removed locally:", err.message);
+        }
+
         return true;
     }
 
@@ -487,6 +556,21 @@ class DataService {
     ========================================================= */
 
     async getReviews(storyId = null) {
+        try {
+            let url = `${getApiBase()}/reviews${storyId ? `?storyId=${encodeURIComponent(storyId)}` : ""}`;
+            let res = await fetch(url);
+            if (res.ok) {
+                let json = await res.json();
+                let reviews = json.data || json;
+                if (Array.isArray(reviews)) {
+                    localStorage.setItem("app_reviews", JSON.stringify(reviews));
+                    return storyId ? reviews.filter(r => r.storyId === storyId) : reviews;
+                }
+            }
+        } catch (err) {
+            console.warn("Backend /api/reviews unreachable, using local cache:", err.message);
+        }
+
         let local = JSON.parse(localStorage.getItem("app_reviews") || "[]");
         if (!local || local.length === 0) {
             localStorage.setItem("app_reviews", JSON.stringify(SEED_REVIEWS));
@@ -507,6 +591,22 @@ class DataService {
         let localReviews = JSON.parse(localStorage.getItem("app_reviews") || "[]");
         localReviews.unshift(review);
         localStorage.setItem("app_reviews", JSON.stringify(localReviews));
+
+        // Persist to MongoDB
+        try {
+            let res = await fetch(`${getApiBase()}/reviews`, {
+                method: "POST",
+                headers: this.getAuthHeaders(),
+                body: JSON.stringify(review)
+            });
+            if (res.ok) {
+                let json = await res.json();
+                return json.data || review;
+            }
+        } catch (err) {
+            console.warn("Backend saveReview unreachable, saved to local cache:", err.message);
+        }
+
         return review;
     }
 
@@ -523,8 +623,82 @@ class DataService {
     }
 
     /* =========================================================
-       USERS & AUTH
+       USERS & JWT AUTHENTICATION
     ========================================================= */
+
+    async login(email, password) {
+        try {
+            let res = await fetch(`${getApiBase()}/auth/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            });
+            let data = await res.json();
+            if (res.ok && data.success) {
+                if (data.token) {
+                    localStorage.setItem("auth_token", data.token);
+                }
+                if (data.user) {
+                    localStorage.setItem("user", JSON.stringify(data.user));
+                }
+                return { success: true, token: data.token, user: data.user };
+            }
+            return { success: false, message: data.message || "Invalid credentials" };
+        } catch (err) {
+            console.warn("Backend auth unreachable, checking local credentials fallback:", err.message);
+            let user = await this.getUserByEmail(email);
+            if (user && user.password === password) {
+                localStorage.setItem("user", JSON.stringify(user));
+                return { success: true, user };
+            }
+            return { success: false, message: "Authentication failed. Server unreachable and local match failed." };
+        }
+    }
+
+    async register(name, email, password, role = "Reader") {
+        try {
+            let res = await fetch(`${getApiBase()}/auth/register`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, email, password, role })
+            });
+            let data = await res.json();
+            if (res.ok && data.success) {
+                if (data.token) {
+                    localStorage.setItem("auth_token", data.token);
+                }
+                if (data.user) {
+                    localStorage.setItem("user", JSON.stringify(data.user));
+                }
+                return { success: true, token: data.token, user: data.user };
+            }
+            return { success: false, message: data.message || "Registration failed" };
+        } catch (err) {
+            console.warn("Backend auth unreachable, falling back to local registration:", err.message);
+            let newUser = {
+                name,
+                email,
+                password,
+                role,
+                xp: 100,
+                completedStories: [],
+                usedFreeRetreatStories: []
+            };
+            await this.saveUser(newUser);
+            localStorage.setItem("user", JSON.stringify(newUser));
+            return { success: true, user: newUser };
+        }
+    }
+
+    async syncProgress(userId, xp, completedStories, usedFreeRetreatStories) {
+        try {
+            await fetch(`${getApiBase()}/auth/progress`, {
+                method: "PUT",
+                headers: this.getAuthHeaders(),
+                body: JSON.stringify({ userId, xp, completedStories, usedFreeRetreatStories })
+            });
+        } catch (e) {}
+    }
 
     async getUsers() {
         let local = JSON.parse(localStorage.getItem("app_users") || "[]");

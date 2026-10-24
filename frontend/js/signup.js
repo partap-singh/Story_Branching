@@ -30,32 +30,19 @@ async function handleRegister(event) {
     if (signupBtn) signupBtn.value = "Registering...";
 
     try {
-        let existingUser = await window.dataService.getUserByEmail(email);
+        let res = await window.dataService.register(name, email, createPassword, "Reader");
 
-        if (existingUser) {
-            alert("This email address is already registered. Please sign in instead.");
+        if (!res.success) {
+            alert(res.message || "Registration failed. Please try a different email.");
             if (signupBtn) signupBtn.value = "CREATE ACCOUNT →";
             return;
         }
 
-        let newUser = {
-            name: name,
-            email: email,
-            password: createPassword,
-            role: "Reader",
-            xp: 100,
-            completedStories: [],
-            usedFreeRetreatStories: []
-        };
-
-        await window.dataService.saveUser(newUser);
-
         alert(`Welcome, ${name}! Your account was created with +100 starting XP.`);
-        localStorage.setItem("user", JSON.stringify(newUser));
         window.location.href = "../reader/stories.html";
     } catch (e) {
         console.error("Registration error:", e);
-        alert("Error during registration. Please try again.");
+        alert("Error during registration: " + (e.message || "Please try again."));
         if (signupBtn) signupBtn.value = "CREATE ACCOUNT →";
     }
 }

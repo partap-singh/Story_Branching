@@ -24,30 +24,29 @@ async function handleLogin(event) {
     if (submitBtn) submitBtn.value = "Authenticating...";
 
     try {
-        let user = await window.dataService.getUserByEmail(email);
+        let res = await window.dataService.login(email, password);
 
-        if (!user) {
-            alert("Account not found with this email. Please check credentials or register.");
+        if (!res.success) {
+            alert(res.message || "Account not found or password incorrect. Please check credentials or register.");
             if (submitBtn) submitBtn.value = "SIGN IN →";
             return;
         }
 
-        if (user.password !== password) {
-            alert("Incorrect password. Please try again.");
-            if (submitBtn) submitBtn.value = "SIGN IN →";
-            return;
-        }
-
-        loginUserSession(user);
+        loginUserSession(res.user);
     } catch (err) {
         console.error("Login error:", err);
-        alert("Authentication failed. Please retry.");
+        alert("Authentication error: " + (err.message || "Please check backend connection."));
         if (submitBtn) submitBtn.value = "SIGN IN →";
     }
 }
 
-function quickLogin(preset) {
+async function quickLogin(preset) {
     if (preset === "admin") {
+        let res = await window.dataService.login("admin@gmail.com", "admin123");
+        if (res && res.success) {
+            loginUserSession(res.user);
+            return;
+        }
         loginUserSession({
             id: "usr_admin_1",
             name: "System Admin",
@@ -57,6 +56,11 @@ function quickLogin(preset) {
             completedStories: ["story_lost_kingdom", "story_neon_nexus"]
         });
     } else {
+        let res = await window.dataService.login("testreader@example.com", "password123");
+        if (res && res.success) {
+            loginUserSession(res.user);
+            return;
+        }
         loginUserSession({
             id: "usr_reader_demo",
             name: "Alex Vance",

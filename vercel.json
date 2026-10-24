@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/Story_Branching/Story_Branching/Authentication/Landing.html"
+      "destination": "/frontend/Landing.html"
     },
     {
       "source": "/(.*)",
-      "destination": "/Story_Branching/Story_Branching/Authentication/$1"
+      "destination": "/frontend/$1"
     }
   ]
 }

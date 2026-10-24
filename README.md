@@ -1,178 +1,234 @@
-🌌 Dynamic Story Engine (Story Branching Universe)
-AI-Powered Interactive Branching Story Engine with Directed Graph Theory Analytics, Procedural Ambient Soundscapes, and Gamified Reader Progression.
+# 🌌 Dynamic Story Engine (Story Branching Universe)
 
-📌 Table of Contents
-🎯 Project Aim
-🎯 Key Objectives
-✨ Core Features
-⚙️ Detailed Functionalities
-1. Immersive Reader Engine
-2. Graph Studio & Narrative Topology
-3. AI / NLP Intelligence Subsystem
-4. Procedural Audio & Ambient Engine
-5. Admin & Story Creator Studio
-6. Authentication & User Profile System
-🏗️ System Architecture & Data Model
-💻 Technology Stack
-📂 Project Structure
-🚀 Getting Started & Installation
-🔮 Future Roadmap
-📜 License
-🎯 Project Aim
-The primary Aim of the Dynamic Story Engine is to redefine digital non-linear storytelling by bridging creative prose with discrete mathematics (Directed Acyclic Graphs), real-time Natural Language Processing (NLP), and procedural Web Audio/Speech synthesis.
+> **Phase 2 Evaluation Ready:** Powered by **Node.js, Express.js, MongoDB Atlas**, and **JWT Authentication**, integrated with a reactive Neo-Brutalist frontend, Directed Graph Theory diagnostics, and procedural ambient audio.
 
-Traditional interactive fiction often suffers from narrative dead-ends, disconnected plotlines, and static presentation. The Dynamic Story Engine solves these challenges by providing:
+---
 
-An intuitive, visual authoring studio with topological mathematical validation that prevents dead ends and circular logic flaws.
-A sensory, immersive reading platform that reacts to the emotional atmosphere of the narrative in real time via ambient lighting, procedural generative soundscapes, and AI voice narration.
-A gamified reader community where choices carry weight, journeys are chronicled and exportable, and reader progression is rewarded with experience points (XP) and achievement badges.
-🎯 Key Objectives
-Non-Linear Graph Modeling: Formulate interactive stories as directed graphs 
-G
-=
-(
-V
-,
-E
-)
-, where vertices 
-V
- represent narrative scenes/nodes and directed edges 
-E
- represent player choices.
-Topological Integrity & Graph Diagnostics: Implement algorithms (DFS, cycle detection, in-degree/out-degree audits, entropy analysis) to verify story coherence and structural health.
-Emotion & Atmosphere Synchronization: Extract emotional tone (thrill, suspense, heroism, melancholy, peace, danger) dynamically from narrative text using lexical NLP to drive dynamic visual glows and audio soundscapes.
-Procedural Audio & Accessibility: Integrate the Web Audio API for synthetic chord/drone generation and the Web Speech API (TTS) for natural voice storytelling.
-State Checkpoints & Time-Warp Mechanics: Deliver flexible checkpoint persistence (multi-slot saving/loading) and an XP-based "Time-Warp Retreat" mechanic allowing players to undo fatal decisions.
-Role-Based Content Administration: Provide separated, authenticated workflows for Readers (exploration, ratings, progress tracking) and Admins/Authors (visual graph editing, story cloning, node linking, AI scene co-piloting).
-Resilient Offline-First Architecture: Ensure persistent data flow using a synchronized hybrid storage model combining a local mock REST API (json-server) with fallback browser caching (localStorage).
-✨ Core Features
-Feature	Description
-Interactive Graph Traversal	Dynamic node-by-node decision making with multiple ending classifications (Good, Neutral, Tragic, Catastrophic).
-Real-Time Graph Minimap	Interactive canvas overlay displaying the entire story topology and highlighting the reader's live traversal route.
-AI Emotion Atmosphere Glow	Ambient background lighting dynamically shifts colors to reflect the scene's emotional sentiment.
-Procedural Soundscapes	Generative multi-oscillator synthesizer producing mood-matched background audio without external audio files.
-Text-to-Speech (TTS) Narrator	Built-in AI voice reading scenes aloud with real-time speech controls (rate, pitch, voices).
-Visual Graph Studio	Dual-view authoring workspace switching seamlessly between structured cards and interactive canvas node graphs.
-Automated Graph Validator	Mathematical diagnostic audit catching unreachable nodes, broken target edges, loops, and terminal dead-ends.
-Time-Warp & Checkpoints	Multi-slot timeline saving and an XP-cost undo system to backtrack without restarting the entire story.
-Journey Chronicle Exporter	Generates formatted step-by-step transcripts of the reader's path, exportable as JSON or formatted text.
-Community Ratings & Reviews	Interactive feedback system allowing readers to leave 5-star ratings and written reviews.
-Gamified Reader XP System	Readers earn XP, unlock ranks (Novice → Master Storyteller), and collect achievement badges.
-⚙️ Detailed Functionalities
-1. Immersive Reader Engine
-Dynamic Scene Rendering: Reads scene data including title, prose, location tag, character lists, and custom choices.
-Branching Decision Pathway: Presents interactive choice pills leading to new narrative branches.
-Story Minimap Modal: Live 2D topological graph rendering showing current node position, visited nodes, and ending destinations.
-Timeline Checkpoints (Save/Load): Multiple save slots allowing readers to bookmark critical narrative forks and reload later.
-Time-Warp Retreat: Allows readers to step back to previous scenes at the cost of player XP.
-Journey Chronicle: Comprehensive narrative log that tracks every choice made, calculate total traversal depth, and enables one-click download/clipboard copying.
-2. Graph Studio & Narrative Topology
-Dual Authoring Mode:
-Card View: Rapid form-based creation of scene nodes, choices, character tags, and ending flags.
-Canvas View: Interactive visual node graph displaying connected edges with color-coded node states (Start = Gold, Scene = Blue, Good Ending = Emerald, Tragic Ending = Crimson).
-Mathematical Structural Audit:
-Calculates Total Nodes, Edges, Average Branching Factor, and Narrative Entropy.
-Detects unreachable orphan nodes and broken edge targets.
-DFS-based loop and cycle detector for maintaining DAG compliance.
-Cascading Deletions: Deleting a scene automatically cleans up all corresponding choice edges referencing it across the entire story.
-3. AI / NLP Intelligence Subsystem
-Sentiment & Emotion Analysis: Lexical parsing categorizes scene narrative into emotional vectors (Thrilling, Suspenseful, Heroic, Melancholy, Peaceful, Dangerous).
-Content Atmosphere Injection: Dynamically adjusts page glow gradients and CSS variables to match the mood of the text.
-AI Narrative Co-Pilot: Generates narrative continuation prompts and suggests branching choice options for authors.
-Content Recommendation Engine: Computes cosine similarity across story descriptions, genres, and user reading history to recommend related adventures.
-4. Procedural Audio & Ambient Engine
-Web Audio API Procedural Synthesizer: Real-time synthesis of soundscapes (Cyberpunk Drone, Mystery Harmonics, Tension Pulse, Ethereal Peace, Victory Chords) using dual oscillators, low-pass biquad filters, and gain ramps.
-AI Voice Narration (TTS): Uses the Web Speech API to read scene narrative aloud, automatically adjusting cadence and stopping upon scene transition.
-5. Admin & Story Creator Studio
-Full Story Lifecycle (CRUD): Create, edit, preview, publish, and delete story universes.
-Deep Story Cloning: Duplicates entire story graphs with freshly generated node and choice IDs for easy template branching.
-Preset Cover Selector: Built-in curated cover art library for genres (Adventure, Cyberpunk, Sci-Fi, Fantasy, Mystery, Horror).
-Live Publishing Status: Toggle between draft and published states.
-6. Authentication & User Profile System
-Role-Based Access Control (RBAC): Separate interfaces and permission tiers for Reader and Admin users.
-User Progression Tracker: Tracks user XP, story completion records, level badges, and saved checkpoints in persistent storage.
-Session Management: Secure local credential validation with seamless redirection guards.
-🏗️ System Architecture & Data Model
+## 📌 Table of Contents
+1. [Project Overview & Architecture](#-system-architecture--data-model)
+2. [Phase 2 Tech Stack](#-technology-stack)
+3. [Project Directory Structure](#-project-structure)
+4. [REST API Documentation](#-rest-api-documentation)
+5. [Getting Started & Installation](#-getting-started--installation)
+   - [Prerequisites](#1-prerequisites)
+   - [MongoDB Atlas Setup](#2-mongodb-atlas-configuration)
+   - [Running the Database Seeder](#3-database-seeding)
+   - [Starting the Application](#4-running-the-application)
+6. [Default Test Credentials](#-default-test-credentials)
+7. [License](#-license)
 
-Data Schema Overview
-User: { id, name, email, password, role, xp, completedStories, savedGames }
-Story: { id, title, author, authorId, genre, status, description, imageURL, startNodeId, nodes: [ Node ] }
-Node: { id, title, text, location, characters: [], isEnding, endingType, choices: [ Choice ] }
-Choice: { id, text, targetNodeId }
-Review: { id, storyId, userId, userName, rating, comment, date }
-💻 Technology Stack
-Frontend Core: HTML5, Modern CSS3 (Neo-Brutalist design tokens, Glassmorphism, Responsive Grid/Flexbox), Vanilla JavaScript (ES6+ Classes, Async/Await).
-Visuals & Canvas: HTML5 2D Canvas API for topological graph and minimap rendering.
-Audio & Speech: Web Audio API (Procedural Oscillator/Gain synthesis), Web Speech API (window.speechSynthesis).
-Typography: Google Fonts (Bowlby One, Outfit, Plus Jakarta Sans).
-Backend / Persistence: json-server (Local REST API Mocking) with automatic localStorage synchronization.
-📂 Project Structure
+---
+
+## 🏗️ System Architecture & Data Model
+
+```mermaid
+graph TD
+    CLIENT[Browser Client / Frontend] -->|HTTP / JSON REST API| SERVER[Express.js / Node.js Server :5000]
+    
+    subgraph Frontend [frontend/ UI & Engines]
+        LAND[Landing.html & UI Views]
+        AUTH_UI[Login & Signup Controllers]
+        READER_UI[Reader Engine & Graph Canvas]
+        ADMIN_UI[Story Creator & Topological Studio]
+        DS[data_service.js - Cache & Sync Layer]
+    end
+
+    subgraph Backend [backend/ Server Layer]
+        SERVER --> AUTH_ROUTER[Auth Routes /api/auth]
+        SERVER --> STORY_ROUTER[Story Routes /api/stories]
+        SERVER --> REVIEW_ROUTER[Review Routes /api/reviews]
+        SERVER --> STATIC[Static Asset Middleware]
+        
+        AUTH_ROUTER --> JWT_MW[JWT / Bcrypt Security Middleware]
+        JWT_MW --> USER_CTRL[User Controller]
+        STORY_ROUTER --> STORY_CTRL[Story Controller]
+        REVIEW_ROUTER --> REVIEW_CTRL[Review Controller]
+    end
+
+    subgraph Database [MongoDB Atlas Cloud Database]
+        USER_CTRL --> USER_COLL[(Users Collection)]
+        STORY_CTRL --> STORY_COLL[(Stories Collection)]
+        REVIEW_CTRL --> REVIEW_COLL[(Reviews Collection)]
+    end
+
+    STATIC -.->|Serves Static Files| Frontend
+    DS -->|Fetches / Saves| SERVER
+```
+
+### Data Schema Overview
+* **User (`User.js`):** `{ id, name, email (unique), password (bcrypt hash), role ('Reader' | 'Admin'), xp, completedStories, usedFreeRetreatStories, timestamps }`
+* **Story (`Story.js`):** `{ id, title, author, authorId, genre, status ('published' | 'draft'), description, imageURL, startNodeId, nodes: [ Node ], timestamps }`
+* **Node (Subdocument):** `{ id, title, text, location, characters: [], isEnding, endingType ('good' | 'tragic' | 'neutral'), choices: [ Choice ] }`
+* **Choice (Subdocument):** `{ id, text, targetNodeId }`
+* **Review (`Review.js`):** `{ id, storyId, userId, userName, rating (1-5), comment, timestamp }`
+
+---
+
+## 💻 Technology Stack
+
+### Backend (Phase 2 Integration)
+* **Runtime:** Node.js (v18+)
+* **Web Framework:** Express.js 4.x
+* **Database:** MongoDB Atlas (Cloud) / Local MongoDB via Mongoose ORM
+* **Authentication:** JSON Web Tokens (JWT) + BcryptJS Password Hashing
+* **Middleware:** CORS, Morgan (HTTP Request Logging), Dotenv
+
+### Frontend
+* **Core:** HTML5 Semantic Structure, Vanilla ES6+ JavaScript (Modular OOP Classes)
+* **Styling:** Vanilla CSS3 with Neo-Brutalist Design Tokens, Responsive Flexbox & Grid
+* **Visuals & Canvas:** HTML5 2D Canvas API for topological graph rendering and live minimap
+* **Audio & Speech:** Web Audio API (procedural synthesis) + Web Speech API (TTS narration)
+* **Typography:** Google Fonts (`Bowlby One`, `Outfit`, `Plus Jakarta Sans`)
+
+---
+
+## 📂 Project Structure
+
+```text
 Story_Branching/
+├── frontend/                         # All client-side UI, scripts & assets
+│   ├── Landing.html                  # Main public landing & presentation page
+│   ├── index.html                    # Root entry redirector
+│   ├── db.json                       # Source database backup
+│   ├── css/                          # Neo-Brutalist stylesheets
+│   │   ├── style.css
+│   │   ├── login.css
+│   │   ├── signup.css
+│   │   ├── reader.css
+│   │   ├── admin.css
+│   │   └── stories.css
+│   ├── js/                           # Frontend controllers & engine classes
+│   │   ├── data_service.js           # REST API client with local fallback
+│   │   ├── login.js                  # JWT login controller
+│   │   ├── signup.js                 # Registration controller
+│   │   ├── reader.js                 # Interactive branching reader & sessions
+│   │   ├── stories.js                # Story authoring & node graph controller
+│   │   ├── admin.js                  # Admin management studio
+│   │   ├── graph_studio.js           # Graph topology diagnostics & canvas
+│   │   ├── ai_engine.js              # Lexical sentiment & story recommendations
+│   │   └── audio_engine.js           # Procedural Web Audio synthesizer
+│   └── pages/
+│       ├── auth/                     # login.html, signup.html
+│       ├── admin/                    # admin.html, add_stories.html
+│       └── reader/                   # stories.html, play.html
 │
-├── Story_Branching/
-│   └── Authentication/
-│       ├── Landing.html            # Public marketing landing page & feature showcase
-│       ├── index.html              # Entry redirector
-│       ├── package.json            # Dependencies & start scripts (json-server)
-│       ├── db.json                 # Persistent database (Users, Stories, Reviews)
-│       │
-│       ├── css/                    # Custom stylesheets
-│       │   ├── style.css           # Global core styles
-│       │   ├── login.css           # Login screen styles
-│       │   ├── signup.css          # Registration screen styles
-│       │   ├── reader.css          # Reader library & gameplay UI
-│       │   ├── admin.css           # Admin dashboard styles
-│       │   └── stories.css         # Visual story editor styles
-│       │
-│       ├── js/                     # Modular JavaScript engines
-│       │   ├── data_service.js     # Data access layer with offline sync
-│       │   ├── ai_engine.js        # Lexical sentiment analysis & NLP recommendations
-│       │   ├── graph_studio.js     # Directed graph diagnostics & canvas renderer
-│       │   ├── audio_engine.js     # Web Audio synth & Web Speech TTS
-│       │   ├── login.js            # Login authentication handling
-│       │   ├── signup.js           # Registration handling
-│       │   ├── reader.js           # Reader interface & game state engine
-│       │   ├── admin.js            # Admin analytics & story manager
-│       │   └── stories.js          # Graph editor & story authoring controller
-│       │
-│       └── pages/                  # Application views
-│           ├── auth/
-│           │   ├── login.html      # User / Admin login page
-│           │   └── signup.html     # User registration page
-│           ├── admin/
-│           │   ├── admin.html      # Admin dashboard & analytics
-│           │   └── add_stories.html# Dual-mode Story & Graph Studio
-│           └── reader/
-│               ├── stories.html    # Story library & community universes
-│               └── play.html       # Immersive interactive story player
+├── backend/                          # Express.js, Node.js & MongoDB Atlas Layer
+│   ├── package.json                  # Backend dependencies & npm scripts
+│   ├── server.js                     # Express server & static asset host
+│   ├── .env.example                  # Environment configuration template
+│   ├── config/
+│   │   └── db.js                     # MongoDB connection with Mongoose
+│   ├── models/
+│   │   ├── User.js                   # Mongoose User model with bcrypt hooks
+│   │   ├── Story.js                  # Mongoose Story & Node Graph model
+│   │   └── Review.js                 # Mongoose Review & Ratings model
+│   ├── controllers/
+│   │   ├── authController.js         # Register, Login, Profile & XP tracking
+│   │   ├── storyController.js        # Story CRUD & Graph persistence
+│   │   └── reviewController.js       # Reviews & average ratings calculations
+│   ├── routes/
+│   │   ├── authRoutes.js             # /api/auth endpoints
+│   │   ├── storyRoutes.js            # /api/stories endpoints
+│   │   └── reviewRoutes.js           # /api/reviews endpoints
+│   ├── middleware/
+│   │   └── authMiddleware.js         # JWT verification & RBAC authorization
+│   └── scripts/
+│       └── seed.js                   # Automated database migration into MongoDB
 │
-└── README.md                       # Comprehensive Project Documentation
-🚀 Getting Started & Installation
-1. Prerequisites
-Node.js (version 16.x or higher)
-Modern web browser (Chrome, Edge, Firefox, Safari)
-2. Clone or Navigate to the Workspace
-cd d:/Story_Branching/Story_Branching/Authentication
-3. Install Dependencies
-npm install
-4. Start the Backend Server
-Launch the local json-server database:
+├── package.json                      # Root workspace scripts (dev, start, seed)
+├── vercel.json                       # Deployment rewrites
+├── .gitignore
+└── README.md                         # Comprehensive documentation
+```
 
-npm run server
-The REST API will run at http://localhost:3000.
+---
 
+## 📡 REST API Documentation
 
+### 1. Authentication (`/api/auth`)
+| Method | Endpoint | Description | Access |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/auth/register` | Register new user, hashes password, returns JWT token | Public |
+| `POST` | `/api/auth/login` | Authenticate user credentials, returns JWT token | Public |
+| `GET` | `/api/auth/me` | Fetch currently authenticated user profile | Private (JWT) |
+| `PUT` | `/api/auth/progress` | Sync reader XP, completed stories, and time-warps | Authenticated |
 
-http://localhost:5500/Story_Branching/Authentication/Landing.html
-5.. Default Credentials
-Role	Email	Password
-Admin	admin@gmail.com	admin123
-Reader	testreader@example.com	password123
-🔮 Future Roadmap
- Multiplayer Cooperative Branching: Enable multiple readers to vote on choices in real time via WebSockets.
- Direct LLM Integration: Connect OpenAI / Gemini API endpoints for live procedural branch generation.
- Rich Media Nodes: Support inline scene video, 3D Canvas scenes (Three.js), and custom audio tracks per node.
- Story Import/Export (Twine / Ink): Support standard .twee and Ink format importing and exporting.
-📜 License
-This project is open-source and available under the MIT License.
+### 2. Stories & Narrative Graph (`/api/stories`)
+| Method | Endpoint | Description | Access |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/stories` | Retrieve stories (supports `?genre=`, `?search=`, `?status=`) | Public |
+| `GET` | `/api/stories/:id` | Fetch full story details and complete node graph | Public |
+| `POST` | `/api/stories` | Create a new branching story universe | Private/Admin |
+| `PUT` | `/api/stories/:id` | Update story metadata, nodes, and choice connections | Private/Admin |
+| `DELETE` | `/api/stories/:id` | Delete story and associated community reviews | Private/Admin |
+
+### 3. Reviews & Ratings (`/api/reviews`)
+| Method | Endpoint | Description | Access |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/reviews` | Get all reviews or filter by story (`?storyId=...`) | Public |
+| `POST` | `/api/reviews` | Post a reader review & 1-5 star rating | Public/Reader |
+
+### 4. Health Check
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/health` | Server uptime & MongoDB connection status |
+
+---
+
+## 🚀 Getting Started & Installation
+
+### 1. Prerequisites
+- **Node.js** (v18.x or v20.x recommended)
+- **MongoDB Atlas account** (or local MongoDB community server)
+- Modern web browser (Chrome, Edge, Firefox, Safari)
+
+### 2. MongoDB Atlas Configuration
+1. Open [`backend/.env`](backend/.env).
+2. Set your `MONGO_URI` to your MongoDB Atlas connection string:
+   ```env
+   MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/story_branching?retryWrites=true&w=majority
+   PORT=5000
+   JWT_SECRET=story_branching_jwt_secret_token_key_2026
+   JWT_EXPIRE=7d
+   ```
+   *(If you run MongoDB locally, you can use `mongodb://127.0.0.1:27017/story_branching`)*
+
+### 3. Database Seeding
+To populate MongoDB with existing stories, users, and community reviews:
+```bash
+npm run seed
+```
+This script reads `frontend/db.json`, hashes all passwords securely with `bcrypt`, and imports all story graph topologies into MongoDB Atlas.
+
+### 4. Running the Application
+From the root directory:
+
+**Development Mode (with auto-reload):**
+```bash
+npm run dev
+```
+
+**Production Mode:**
+```bash
+npm start
+```
+
+Open your browser at:
+👉 **`http://localhost:5000`**
+
+The Express backend serves the integrated frontend directly. You can also open the API health check at **`http://localhost:5000/api/health`**.
+
+---
+
+## 🔑 Default Test Credentials
+
+| Role | Email | Password | Starting XP |
+| :--- | :--- | :--- | :--- |
+| **Admin** | `admin@gmail.com` | `admin123` | 999 XP |
+| **Reader** | `testreader@example.com` | `password123` | 150 XP |
+| **Student** | `aniket3113.beai24@chitkara.edu.in` | `1234` | 100 XP |
+
+---
+
+## 📜 License
+This project is open-source and licensed under the **MIT License**.

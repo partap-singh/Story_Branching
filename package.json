@@ -1,0 +1,22 @@
+{
+  "name": "story-branching-universe",
+  "version": "2.0.0",
+  "description": "Dynamic Story Engine - AI-Powered Interactive Branching Story Universe (Express, Node.js, MongoDB Atlas)",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev",
+    "seed": "cd backend && npm run seed",
+    "install:backend": "cd backend && npm install",
+    "install:all": "cd backend && npm install"
+  },
+  "keywords": [
+    "story-branching",
+    "express",
+    "nodejs",
+    "mongodb",
+    "interactive-fiction",
+    "graph-theory"
+  ],
+  "author": "Dynamic Story Engine Team",
+  "license": "MIT"
+}
