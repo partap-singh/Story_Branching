@@ -598,14 +598,24 @@ function toggleEndingType(checkbox) {
 
 function openAddChoiceModal(fromNodeId) {
     let activeStory = JSON.parse(localStorage.getItem("currentStory")) || currentStory;
-    let node = activeStory ? activeStory.nodes.find(n => n.id === fromNodeId) : null;
+    if (!activeStory || !activeStory.nodes) {
+        alert("Please save Story Metadata first before adding choices!");
+        return;
+    }
+    let node = activeStory.nodes.find(n => n.id === fromNodeId);
     if (!node) return;
+
+    // Need at least 2 nodes to create a choice (source + destination)
+    let otherNodes = activeStory.nodes.filter(n => n.id !== fromNodeId);
+    if (otherNodes.length === 0) {
+        alert("You need at least 2 scene nodes before you can add choices.\n\nClick '+ Add Scene Node' to create a destination scene first, then come back to add choices.");
+        return;
+    }
 
     let targetSelect = document.getElementById("choiceTargetNode");
     if (targetSelect) {
         targetSelect.innerHTML = `<option value="">-- Select Destination Scene --</option>` +
-            activeStory.nodes
-                .filter(n => n.id !== fromNodeId)
+            otherNodes
                 .map(n => `<option value="${n.id}">${n.title} (${n.isEnding ? 'Ending' : 'Scene'})</option>`)
                 .join("");
     }

@@ -282,6 +282,13 @@ a {
     gap: 24px;
 }
 
+.nodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+    margin-top: 8px;
+}
+
 .node-card {
     background: var(--color-paper-white);
     border: var(--border-cut);

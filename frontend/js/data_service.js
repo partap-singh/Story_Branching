@@ -479,8 +479,12 @@ class DataService {
         if (!story.imageURL) {
             story.imageURL = "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=80";
         }
+        // Auto-assign startNodeId from first node if missing (mirrors backend logic)
+        if ((!story.startNodeId || story.startNodeId === '') && Array.isArray(story.nodes) && story.nodes.length > 0) {
+            story.startNodeId = story.nodes[0].id;
+        }
 
-        // Cache locally first
+        // Cache locally first (offline-first design)
         let localStories = JSON.parse(localStorage.getItem("app_stories") || "[]");
         let idx = localStories.findIndex(s => s.id === story.id);
         if (idx >= 0) {
@@ -507,9 +511,17 @@ class DataService {
             if (res.ok) {
                 let json = await res.json();
                 return json.data || story;
+            } else {
+                let errBody = {};
+                try { errBody = await res.json(); } catch (_) {}
+                console.warn("Backend saveStory returned error:", res.status, errBody.message || "");
             }
         } catch (err) {
-            console.warn("Backend saveStory unreachable, saved to local cache only:", err.message);
+            if (err.message && err.message.includes("fetch")) {
+                console.warn("Backend unreachable (server may be offline or Atlas IP not whitelisted). Saved to local cache only.");
+            } else {
+                console.warn("Backend saveStory error:", err.message);
+            }
         }
 
         return story;

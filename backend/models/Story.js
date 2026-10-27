@@ -4,9 +4,12 @@ const choiceSchema = new mongoose.Schema(
     {
         id: { type: String, default: () => 'c_' + Math.random().toString(36).substring(7) },
         text: { type: String, default: 'Continue' },
-        targetNodeId: { type: String, default: '' }
+        targetNodeId: { type: String, default: '' },
+        risk: { type: String, default: null },
+        morality: { type: String, default: null },
+        hint: { type: String, default: null }
     },
-    { _id: false }
+    { _id: false, strict: false }
 );
 
 const nodeSchema = new mongoose.Schema(
@@ -23,7 +26,7 @@ const nodeSchema = new mongoose.Schema(
         },
         choices: { type: [choiceSchema], default: [] }
     },
-    { _id: false }
+    { _id: false, strict: false }
 );
 
 const storySchema = new mongoose.Schema(
@@ -67,7 +70,7 @@ const storySchema = new mongoose.Schema(
         },
         startNodeId: {
             type: String,
-            required: true
+            default: ''
         },
         nodes: {
             type: [nodeSchema],
@@ -75,8 +78,17 @@ const storySchema = new mongoose.Schema(
         }
     },
     {
-        timestamps: true
+        timestamps: true,
+        strict: false
     }
 );
+
+// Auto-assign startNodeId if missing and nodes exist
+storySchema.pre('save', function (next) {
+    if ((!this.startNodeId || this.startNodeId === '') && this.nodes && this.nodes.length > 0) {
+        this.startNodeId = this.nodes[0].id;
+    }
+    next();
+});
 
 module.exports = mongoose.model('Story', storySchema);

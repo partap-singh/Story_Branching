@@ -81,6 +81,11 @@ exports.createStory = async (req, res) => {
                 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=80';
         }
 
+        // Auto-assign startNodeId from first node if missing
+        if ((!storyData.startNodeId || storyData.startNodeId === '') && Array.isArray(storyData.nodes) && storyData.nodes.length > 0) {
+            storyData.startNodeId = storyData.nodes[0].id;
+        }
+
         const story = await Story.create(storyData);
         res.status(201).json({
             success: true,
@@ -101,6 +106,12 @@ exports.createStory = async (req, res) => {
 exports.updateStory = async (req, res) => {
     try {
         const identifier = req.params.id;
+        const updateData = { ...req.body };
+
+        // Auto-assign startNodeId from first node if missing
+        if ((!updateData.startNodeId || updateData.startNodeId === '') && Array.isArray(updateData.nodes) && updateData.nodes.length > 0) {
+            updateData.startNodeId = updateData.nodes[0].id;
+        }
 
         let story = await Story.findOne({ id: identifier });
         if (!story && identifier.match(/^[0-9a-fA-F]{24}$/)) {
@@ -108,13 +119,19 @@ exports.updateStory = async (req, res) => {
         }
 
         if (!story) {
-            // If doesn't exist, allow creating or upserting
-            const newStory = await Story.create({ ...req.body, id: identifier });
+            // Upsert: create new if doesn't exist
+            const newStory = await Story.create({ ...updateData, id: identifier });
             return res.status(200).json({ success: true, data: newStory });
         }
 
-        Object.assign(story, req.body);
-        const updated = await story.save();
+        // Use findOneAndUpdate with $set to properly replace the entire nodes array
+        // including all nested choices subdocuments. Object.assign + save() does NOT
+        // reliably replace Mongoose subdocument arrays.
+        const updated = await Story.findOneAndUpdate(
+            { _id: story._id },
+            { $set: updateData },
+            { new: true, runValidators: false, strict: false }
+        );
 
         res.status(200).json({
             success: true,
